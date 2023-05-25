@@ -1,0 +1,26 @@
+$color-card-default: #559b2d
+$color-card-absent: #ff0000
+$color-card-partly: #ffa500
+$white: #ffffff
+$gray: #999999
+$light-gray: #c0c0c0
+$black: #000000
+
+$main-font: "Roboto", "Arial", sans-serif
+$secondary-font: "Open-Sans", "Arial", sans-serif
+
+@mixin reset-list
+  padding: 0
+  margin: 0
+  list-style-type: none
+
+*,
+*::before,
+*::after
+  box-sizing: border-box
+
+body
+  margin: 0
+  font-family: $main-font
+  direction: rtl
+  background-color: $white

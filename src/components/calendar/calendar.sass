@@ -1,0 +1,77 @@
+@import '../../style'
+  
+.calendar
+  @include reset-list
+  display: grid
+  grid-template-columns: repeat(3, 110px)
+  gap: 7px
+  justify-content: center
+
+  &__item
+    display: flex
+
+  &__day-wrapper
+    display: grid
+    min-height: 130px
+    padding: 0 5px 9px
+    grid-template-columns: 56px 44px
+    justify-content: center
+    align-items: center
+    justify-items: center
+    border-radius: 6px
+    color: $white
+
+    &--inactive
+      background: #d9d9d9
+      color: #c0c0c0
+
+  &__day
+    margin: 0
+    font-size: 48px
+    line-height: 1
+    font-family: $main-font
+    font-weight: 700
+
+  &__inner-wrapper
+    font-size: 12px
+    line-height: 1
+    font-weight: 700
+
+    & p
+      margin: 0
+
+  &__hebrew-date
+    grid-column: 1 / -1
+    font-size: 10px
+    text-align: center
+
+    &::after
+      display: block
+      width: 92px
+      height: 1px
+      margin-top: 3.5px
+      background-color: $white
+      content: ""
+
+  &__btn
+    margin: 6.5px 0 5px
+    padding: 0
+    background-color: transparent
+    border: none
+    border-radius: 50%
+    grid-column: 1 / -1
+    cursor: pointer
+
+    &--disabled
+      pointer-events: none
+
+  &__extra
+    min-height: 12px
+    grid-column: 1 / -1
+    margin: 0
+    font-size: 12px
+    line-height: 1
+    font-weight: 600
+
+  &__day-wrapper--inactive .calendar__hebrew-date::after
+    background-color: #c0c0c0
