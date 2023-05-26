@@ -3,6 +3,7 @@
 .calendar
   @include reset-list
   display: grid
+  margin-bottom: 20px
   grid-template-columns: repeat(3, 110px)
   gap: 7px
   justify-content: center
@@ -75,3 +76,147 @@
 
   &__day-wrapper--inactive .calendar__hebrew-date::after
     background-color: #c0c0c0
+
+  &__submit-btn
+    display: block
+    margin: 0 auto
+    margin-bottom: 30px
+    padding: 10px 20px
+    background-color: transparent
+    color: $gray
+    border: 1px solid #999999
+    border-radius: 24px
+    font-size: 16px
+    line-height: 22px
+    cursor: pointer
+
+  &__day-setting
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    padding: 24px 10px 10px
+    background-color: #fdfdfd
+    box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.25)
+    transform: translateY(80px)
+    transition: 0.3s
+
+    &--step-one
+      transform: translateY(40px)
+
+    &--step-two
+      transform: translateY(0)
+
+    &::before
+      position: absolute
+      top: 8px
+      left: 50%
+      transform: translateX(-50%)
+      display: block
+      width: 60px
+      height: 5px
+      content: ""
+      background-color: #959595
+      border-radius: 8px
+
+  &__buttons-wrapper
+    display: flex
+    gap: 10px
+    justify-content: center
+    align-items: center
+
+
+  &__setting-btn
+    position: relative
+    min-width: 107px
+    padding: 5px 8px
+    padding-right: 30px
+    margin-bottom: 15px
+    border-radius: 12px
+    background-color: transparent
+    outline: none
+    font-size: 12px
+    line-height: 14px
+    text-align: start
+
+    &::before
+      position: absolute
+      top: 3px
+      right: 3px
+      display: block
+      width: 18px
+      height: 18px
+      background-size: 18px 18px
+      background-position: center
+      background-repeat: no-repeat
+      content: ""
+      
+
+    &--full
+      border: 1px solid $color-card-default
+      color: $color-card-default
+
+      &--active
+        background-color: $color-card-default
+        color: $white
+
+      &::before
+        background-image: url("../../img/icons/btn-available.svg")
+
+    &--partly
+      border: 1px solid $color-card-partly
+      color: $color-card-partly
+
+      &--active
+        background-color: $color-card-partly
+        color: $white
+
+      &::before
+        background-image: url("../../img/icons/btn-partly.svg")
+
+    &--unavailable
+      padding-right: 25px
+      border: 1px solid $color-card-absent
+      color: $color-card-absent
+
+      &--active
+        background-color: $color-card-absent
+        color: $white
+
+      &::before
+        background-image: url("../../img/icons/btn-unavailable.svg")
+
+  &__set-time__text
+    font-size: 12px
+    color: $gray
+    margin-left: 5px
+
+  &__set-time__trigger
+    position: relative
+    border-radius: 12px
+    padding: 5px 15px 5px 48px
+    background-color: transparent
+    border: 0.5px solid $gray
+    color: $gray
+    font-size: 12px
+    cursor: pointer
+
+    &::after
+      position: absolute
+      top: 8px
+      left: 10px
+      display: block
+      width: 9px
+      height: 7px
+      content: ""
+      background-image: url("../../img/icons/triangle.svg")
+      background-size: 9px 7px
+      background-position: center
+      background-repeat: no-repeat
+
+    &[data-time-btn='daily-exit']
+      margin-left: 15px

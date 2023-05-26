@@ -26,7 +26,12 @@ export function Header({user, dateFrom, dateTo}: HeaderProps): JSX.Element {
             <b>
               הודעה חשובה
             </b>
-            ! הצו עבור האימון והתעסוקה חל בין התאריכים: {dateFrom.getDate()}-{formatDate(dateTo, 'DD/MM/YYYY')}</p>
+            ! הצו עבור האימון והתעסוקה חל בין התאריכים: 
+            {
+              dateFrom.getMonth() === dateTo.getMonth()
+                ? `${dateFrom.getDate()}-${formatDate(dateTo, 'DD/MM/YYYY')}`
+                : `${formatDate(dateFrom, 'DD/MM')} - ${formatDate(dateTo, 'DD/MM/YYYY')}`
+            }</p>
           <p className="header__description">
             בשעון הלחימה תוכל לחסום ימי מילואים בהם אינך יכול להתייצב.
             בתעסוקה זו באפשרותך לחסום עד 4 ימי מילואים.

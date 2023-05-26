@@ -29,7 +29,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
               day.status.value === STATUSES[4].value ? "נוכחות חובה" : ''
             }
             {
-              day.status.value === STATUSES[2].value ? '10:20 - 17:30' : ''
+              day.status.value === STATUSES[2].value ? '17:30 - 10:20' : ''
             }
           </p>
         </div>
