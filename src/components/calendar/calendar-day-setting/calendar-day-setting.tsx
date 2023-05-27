@@ -10,9 +10,29 @@ export function CalendarDaySetting(): JSX.Element {
   const newPosition = useSelector((state: RootState) => state.calendar.position);
 
   const [isSettingClosed, setSettingClosed] = useState(true);
+  const [isPartlyButtonActive, setPartlyButtonActive] = useState(false);
+  const [isAvailableButtonActive, setAvailableButtonActive] = useState(true);
+  const [isUnavailableButtonActive, setUnavailableButtonActive] = useState(false);
 
   const handleSetPartlyButtonClick = () => {
     dispatch(changeSettingVisibility({position: DAY_SETTING[2].position, margin: DAY_SETTING[2].margin}));
+    setPartlyButtonActive(!isPartlyButtonActive);
+    setAvailableButtonActive(false);
+    setUnavailableButtonActive(false);
+  }
+  
+  const handleSetUnavailableButtonClick = () => {
+    dispatch(changeSettingVisibility({position: DAY_SETTING[1].position, margin: DAY_SETTING[1].margin}));
+    setUnavailableButtonActive(!isUnavailableButtonActive);
+    setAvailableButtonActive(false);
+    setPartlyButtonActive(false);
+  }
+  
+  const handleSetAvailableButtonClick = () => {
+    dispatch(changeSettingVisibility({position: DAY_SETTING[1].position, margin: DAY_SETTING[1].margin}));
+    setAvailableButtonActive(!isAvailableButtonActive)
+    setPartlyButtonActive(false);
+    setUnavailableButtonActive(false);
   }
 
   const handleCloseSetting = () => {
@@ -26,12 +46,18 @@ export function CalendarDaySetting(): JSX.Element {
     <div className="calendar__day-setting" data-show={newPosition}>
       <span className="calendar__setting-toggler" aria-hidden="true" onClick={handleCloseSetting}></span>
       <div className="calendar__buttons-wrapper">
-        <button className="calendar__setting-btn calendar__setting-btn--full">נוכחות מלאה</button>
         <button
-          className="calendar__setting-btn calendar__setting-btn--partly"
+          className={`calendar__setting-btn calendar__setting-btn--full ${isAvailableButtonActive ? 'calendar__setting-btn--full--active' : ''}`}
+          onClick={handleSetAvailableButtonClick}
+        >נוכחות מלאה</button>
+        <button
+          className={`calendar__setting-btn calendar__setting-btn--partly ${isPartlyButtonActive ? 'calendar__setting-btn--partly--active' : ''}`}
           onClick={handleSetPartlyButtonClick}
         >נוכחות חלקית</button>
-        <button className="calendar__setting-btn calendar__setting-btn--unavailable">חסימה</button>
+        <button
+          className={`calendar__setting-btn calendar__setting-btn--unavailable ${isUnavailableButtonActive ? 'calendar__setting-btn--unavailable--active' : ''}`}
+          onClick={handleSetUnavailableButtonClick}
+        >חסימה</button>
       </div>
       <div className="calendar__set-time">
         <span className="calendar__set-time__text">שעת יציאה</span>

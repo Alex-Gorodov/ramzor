@@ -1,11 +1,11 @@
 import { formatJewishDateInHebrew, toJewishDate } from "jewish-date";
 import { DayCard } from "../../../types/day-card";
 import { DAYS_OF_WEEK, DAY_SETTING, MONTHS, STATUSES } from "../../../const";
-import cn from 'classnames';
-import '../calendar.sass';
 import { DaySetting } from "../../../types/day-setting";
 import { useDispatch } from "react-redux";
 import { changeSettingVisibility } from "../../../store/calendar/calendar-actions";
+import cn from 'classnames';
+import '../calendar.sass';
 
 type DayCardProps = {
   day: DayCard;
@@ -36,10 +36,10 @@ export function DayCardItem({day, daySetting}: DayCardProps): JSX.Element {
         </button>
         <p className="calendar__extra">
           {
-            day.status.value === STATUSES[4].value ? "נוכחות חובה" : ''
+            day.status.value === STATUSES[4].value ? "נוכחות חובה" : STATUSES[0].value
           }
           {
-            day.status.value === STATUSES[2].value ? `${daySetting.setting.hourTo} - ${daySetting.setting.hourFrom}` : ''
+            day.status.value === STATUSES[2].value ? `${daySetting.setting.hourTo} - ${daySetting.setting.hourFrom}` : STATUSES[0].value
           }
         </p>
       </div>

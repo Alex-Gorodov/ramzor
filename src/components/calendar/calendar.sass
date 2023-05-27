@@ -115,18 +115,6 @@
     &[data-show="step-two"]
       transform: translateY(0)
 
-    // &::before
-    //   position: absolute
-    //   top: 8px
-    //   left: 50%
-    //   transform: translateX(-50%)
-    //   display: block
-    //   width: 60px
-    //   height: 5px
-    //   content: ""
-    //   background-color: #959595
-    //   border-radius: 8px
-
   &__setting-toggler
     position: relative
     top: -12px
@@ -175,35 +163,47 @@
       border: 1px solid $color-card-default
       color: $color-card-default
 
+      &::before
+        background-image: url("../../img/icons/btn-available.svg")
+
       &--active
         background-color: $color-card-default
         color: $white
 
-      &::before
-        background-image: url("../../img/icons/btn-available.svg")
+        &::before
+          background-image: url("../../img/icons/available.svg")
 
     &--partly
       border: 1px solid $color-card-partly
       color: $color-card-partly
 
+      &::before
+        background-image: url("../../img/icons/btn-partly.svg")
+
       &--active
         background-color: $color-card-partly
         color: $white
 
-      &::before
-        background-image: url("../../img/icons/btn-partly.svg")
+        &::before
+          background-image: url("../../img/icons/clock.svg")
 
     &--unavailable
       padding-right: 25px
       border: 1px solid $color-card-absent
       color: $color-card-absent
 
+      &::before
+        background-image: url("../../img/icons/btn-unavailable.svg")
+
       &--active
         background-color: $color-card-absent
         color: $white
 
-      &::before
-        background-image: url("../../img/icons/btn-unavailable.svg")
+        &::before
+          background-image: url("../../img/icons/unavailable.svg")
+          
+
+
 
   &__set-time__text
     font-size: 12px
