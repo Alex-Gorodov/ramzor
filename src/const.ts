@@ -5,7 +5,7 @@ import lockedIcon from './img/icons/lock.svg';
 
 
 export enum AppRoute {
-  Root = '/',
+  Root = 'ramzor/',
 }
 
 export const MONTHS = [
