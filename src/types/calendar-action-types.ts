@@ -1,0 +1,13 @@
+export const OPEN_SETTINGS_STEP_ONE = 'OPEN_SETTINGS-STEP-ONE';
+export const OPEN_SETTINGS_STEP_TWO = 'OPEN_SETTINGS-STEP-TWO';
+export const CLOSE_SETTINGS = 'CLOSE_SETTINGS';
+
+export const SUBMIT_BTN_MARGIN_STEP_ONE = 'SUBMIT_BTN_MARGIN_STEP_ONE';
+export const SUBMIT_BTN_MARGIN_STEP_TWO = 'SUBMIT_BTN_MARGIN_STEP_TWO';
+
+export type CalendarAction =
+  | { type: typeof OPEN_SETTINGS_STEP_ONE }
+  | { type: typeof OPEN_SETTINGS_STEP_TWO }
+  | { type: typeof CLOSE_SETTINGS }
+  | { type: typeof SUBMIT_BTN_MARGIN_STEP_ONE }
+  | { type: typeof SUBMIT_BTN_MARGIN_STEP_TWO };

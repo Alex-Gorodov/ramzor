@@ -63,6 +63,9 @@
     grid-column: 1 / -1
     cursor: pointer
 
+    &[data-btn-type="locked"]
+      pointer-events: none
+
     &--disabled
       pointer-events: none
 
@@ -80,7 +83,6 @@
   &__submit-btn
     display: block
     margin: 0 auto
-    margin-bottom: 30px
     padding: 10px 20px
     background-color: transparent
     color: $gray
@@ -102,26 +104,38 @@
     padding: 24px 10px 10px
     background-color: #fdfdfd
     box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.25)
-    transform: translateY(80px)
     transition: 0.3s
 
-    &--step-one
+    &[data-show="hidden"]
+      transform: translateY(80px)
+
+    &[data-show="step-one"]
       transform: translateY(40px)
 
-    &--step-two
+    &[data-show="step-two"]
       transform: translateY(0)
 
-    &::before
-      position: absolute
-      top: 8px
-      left: 50%
-      transform: translateX(-50%)
-      display: block
-      width: 60px
-      height: 5px
-      content: ""
-      background-color: #959595
-      border-radius: 8px
+    // &::before
+    //   position: absolute
+    //   top: 8px
+    //   left: 50%
+    //   transform: translateX(-50%)
+    //   display: block
+    //   width: 60px
+    //   height: 5px
+    //   content: ""
+    //   background-color: #959595
+    //   border-radius: 8px
+
+  &__setting-toggler
+    position: relative
+    top: -12px
+    display: block
+    width: 60px
+    height: 5px
+    content: ""
+    background-color: #959595
+    border-radius: 8px
 
   &__buttons-wrapper
     display: flex
@@ -142,6 +156,7 @@
     font-size: 12px
     line-height: 14px
     text-align: start
+    cursor: pointer
 
     &::before
       position: absolute

@@ -1,20 +1,32 @@
+import { useSelector } from 'react-redux';
+import { DAY_SETTING } from '../../../const';
 import { calendar } from '../../../mocks/calendar';
 import { DayCardItem } from '../../calendar/day-card-item/day-card-item';
-import '../calendar.sass'
+import { CalendarDaySetting } from '../calendar-day-setting/calendar-day-setting';
+import '../calendar.sass';
+import { RootState } from '../../../store/RootState';
 
-export function CalendarList() {
+export function CalendarList(): JSX.Element {
+  const margin = useSelector((state: RootState) => state.calendar.margin)
+
   return (
     <>
       <ul className="calendar">
         {calendar.map((day) => (
           <li key={day.id} className='calendar__item'>
-            <DayCardItem day={
-              calendar[day.id]
-            } />
+            <DayCardItem 
+              day={calendar[day.id]}
+              daySetting={{
+                id: 0,
+                date: day.date,
+                setting: DAY_SETTING[0]
+              }}
+              />
           </li>
         ))}
       </ul>
-      <button className="calendar__submit-btn">שלח לאישור הממונה</button>
+      <button className="calendar__submit-btn" style={{ marginBottom: `${margin}` }}>שלח לאישור הממונה</button>
+      <CalendarDaySetting />
     </>
   );
 }
