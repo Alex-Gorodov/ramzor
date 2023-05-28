@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { changeSettingVisibility } from "../../../store/calendar/calendar-actions";
-import { DAY_SETTING } from "../../../const";
+import { changeCardStatus, changeSettingVisibility } from "../../../store/calendar/calendar-actions";
+import { DAY_SETTING, STATUSES } from "../../../const";
 import { RootState } from "../../../store/RootState";
 import { useState } from "react";
 
@@ -16,6 +16,7 @@ export function CalendarDaySetting(): JSX.Element {
 
   const handleSetPartlyButtonClick = () => {
     dispatch(changeSettingVisibility({position: DAY_SETTING[2].position, margin: DAY_SETTING[2].margin}));
+    dispatch(changeCardStatus({cardStatus: STATUSES[2]}));
     setPartlyButtonActive(!isPartlyButtonActive);
     setAvailableButtonActive(false);
     setUnavailableButtonActive(false);
@@ -23,6 +24,7 @@ export function CalendarDaySetting(): JSX.Element {
   
   const handleSetUnavailableButtonClick = () => {
     dispatch(changeSettingVisibility({position: DAY_SETTING[1].position, margin: DAY_SETTING[1].margin}));
+    dispatch(changeCardStatus({cardStatus: STATUSES[3]}));
     setUnavailableButtonActive(!isUnavailableButtonActive);
     setAvailableButtonActive(false);
     setPartlyButtonActive(false);
@@ -30,6 +32,7 @@ export function CalendarDaySetting(): JSX.Element {
   
   const handleSetAvailableButtonClick = () => {
     dispatch(changeSettingVisibility({position: DAY_SETTING[1].position, margin: DAY_SETTING[1].margin}));
+    dispatch(changeCardStatus({cardStatus: STATUSES[1]}));
     setAvailableButtonActive(!isAvailableButtonActive)
     setPartlyButtonActive(false);
     setUnavailableButtonActive(false);

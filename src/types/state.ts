@@ -1,5 +1,5 @@
 import { store } from "../store";
-import { DayCard } from "./day-card";
+import { CardStatus, DayCard } from "./day-card";
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -11,4 +11,12 @@ export type DataState = {
 export type CalendarState = {
   position: string;
   margin: string;
+  cardStatus: CardStatus;
 };
+
+export type DayState = {
+  day: Record<number, DayCard[]>;
+  isIncluded: boolean;
+  date: Date;
+  daySetting: CardStatus;
+}
