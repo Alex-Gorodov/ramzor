@@ -9,6 +9,7 @@ export type DataState = {
 }
 
 export type CalendarState = {
+  selectedCardId: number | null;
   position: string;
   margin: string;
   cardStatus: CardStatus;

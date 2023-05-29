@@ -26,6 +26,9 @@
       background: #d9d9d9
       color: #c0c0c0
 
+    &--selected
+      opacity: 0.3
+
   &__day
     margin: 0
     font-size: 48px
@@ -157,7 +160,6 @@
       background-position: center
       background-repeat: no-repeat
       content: ""
-      
 
     &--full
       border: 1px solid $color-card-default
@@ -201,9 +203,6 @@
 
         &::before
           background-image: url("../../img/icons/unavailable.svg")
-          
-
-
 
   &__set-time__text
     font-size: 12px
