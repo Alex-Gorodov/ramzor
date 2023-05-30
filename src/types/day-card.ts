@@ -1,5 +1,4 @@
 export type CardStatus = {
-  isIncluded: boolean;
   icon: string;
   value: string;
   color: string;
@@ -7,6 +6,8 @@ export type CardStatus = {
 
 export type DayCard = {
   id: number;
+  isIncluded: boolean;
   date: Date;
+  isSelected: boolean;
   status: CardStatus;
 }

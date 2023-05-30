@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import browserHistory from "../../browser-history";
 import { HistoryRouter } from "../history-route/history-route";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { calendarReducer } from "../../store/calendar/calendar-reducers";
 import { Provider } from "react-redux";
 
@@ -13,6 +13,9 @@ const store = configureStore({
   reducer: {
     calendar: calendarReducer,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 export const App: FC = () => {

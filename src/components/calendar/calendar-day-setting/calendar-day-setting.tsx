@@ -1,7 +1,6 @@
-
 import { useDispatch, useSelector } from "react-redux";
-import { changeCardStatus, changeSettingVisibility } from "../../../store/calendar/calendar-actions";
-import { DAY_SETTING, STATUSES } from "../../../const";
+import { changeCardStatus, changeSettingVisibility, removeSelect, selectCard } from "../../../store/calendar/calendar-actions";
+import { SETTER_STATE, STATUSES } from "../../../const";
 import { RootState } from "../../../store/RootState";
 import { useState } from "react";
 
@@ -12,45 +11,62 @@ type CalendarDaySettingProps = {
 export function CalendarDaySetting({ cardId }: CalendarDaySettingProps): JSX.Element {
   const dispatch = useDispatch();
   const newPosition = useSelector((state: RootState) => state.calendar.position);
-
   const [isSettingClosed, setSettingClosed] = useState(true);
   const [isPartlyButtonActive, setPartlyButtonActive] = useState(false);
   const [isAvailableButtonActive, setAvailableButtonActive] = useState(true);
   const [isUnavailableButtonActive, setUnavailableButtonActive] = useState(false);
 
   const handleSetPartlyButtonClick = (cardId: number) => {
-    dispatch(changeSettingVisibility({cardId, position: DAY_SETTING[2].position, margin: DAY_SETTING[2].margin}));
-    dispatch(changeCardStatus({cardId, cardStatus: STATUSES[2]}));
+    dispatch(selectCard({ cardId, isSelected: true }));
+    if (!isPartlyButtonActive) {
+      dispatch(changeSettingVisibility({ cardId, position: SETTER_STATE[2].position, margin: SETTER_STATE[2].margin }));
+      dispatch(changeCardStatus({ cardId, cardStatus: STATUSES[2] }));
+    } else {
+      dispatch(changeSettingVisibility({ cardId, position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
+      dispatch(removeSelect({ cardStatus: STATUSES[2], cardId }));
+    }
     setPartlyButtonActive(!isPartlyButtonActive);
     setAvailableButtonActive(false);
     setUnavailableButtonActive(false);
-  }
-  
+  };
+
   const handleSetUnavailableButtonClick = (cardId: number) => {
-    dispatch(changeSettingVisibility({cardId, position: DAY_SETTING[1].position, margin: DAY_SETTING[1].margin}));
-    dispatch(changeCardStatus({cardId, cardStatus: STATUSES[3]}));
+    dispatch(selectCard({ cardId, isSelected: true }));
+    if (!isUnavailableButtonActive) {
+      dispatch(changeSettingVisibility({ cardId, position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin }));
+      dispatch(changeCardStatus({ cardId, cardStatus: STATUSES[3] }));
+    } else {
+      dispatch(changeSettingVisibility({ cardId, position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
+      dispatch(removeSelect({ cardStatus: STATUSES[3], cardId }));
+    }
     setUnavailableButtonActive(!isUnavailableButtonActive);
     setAvailableButtonActive(false);
     setPartlyButtonActive(false);
-  }
-  
+  };
+
   const handleSetAvailableButtonClick = (cardId: number) => {
-    dispatch(changeSettingVisibility({cardId, position: DAY_SETTING[1].position, margin: DAY_SETTING[1].margin}));
-    dispatch(changeCardStatus({cardId, cardStatus: STATUSES[1]}));
-    setAvailableButtonActive(!isAvailableButtonActive)
+    dispatch(selectCard({ cardId, isSelected: true }));
+    if (!isAvailableButtonActive) {
+      dispatch(changeSettingVisibility({ cardId, position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin }));
+      dispatch(changeCardStatus({ cardId, cardStatus: STATUSES[1] }));
+    } else {
+      dispatch(changeSettingVisibility({ cardId, position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
+      dispatch(removeSelect({ cardStatus: STATUSES[1], cardId }));
+    }
+    setAvailableButtonActive(!isAvailableButtonActive);
     setPartlyButtonActive(false);
     setUnavailableButtonActive(false);
-  }
+  };
 
   const handleCloseSetting = (cardId: number) => {
-    isSettingClosed && newPosition === (DAY_SETTING[1].position || DAY_SETTING[2].position)
-      ? dispatch(changeSettingVisibility({cardId, position: DAY_SETTING[1].position, margin: DAY_SETTING[1].margin}))
-      : dispatch(changeSettingVisibility({cardId, position: DAY_SETTING[0].position, margin: DAY_SETTING[0].margin}))
-      setSettingClosed(!isSettingClosed)
-  }
-  
+    isSettingClosed && newPosition === (SETTER_STATE[1].position || SETTER_STATE[2].position)
+      ? dispatch(changeSettingVisibility({ cardId, position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin }))
+      : dispatch(changeSettingVisibility({ cardId, position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
+    setSettingClosed(!isSettingClosed);
+  };
+
   return (
-    <div className="calendar__day-setting" data-show={newPosition} >
+    <div className="calendar__day-setting" data-show={newPosition}>
       <span className="calendar__setting-toggler" aria-hidden="true" onClick={() => cardId !== null ? handleCloseSetting(cardId) : undefined}></span>
       <div className="calendar__buttons-wrapper">
         <button

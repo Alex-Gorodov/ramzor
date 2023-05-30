@@ -49,7 +49,7 @@ export const STATUSES = [
   { isIncluded: true, icon: lockedIcon, color: StatusesColors.Locked, value: 'locked' },
 ]
 
-export const DAY_SETTING = [
+export const SETTER_STATE = [
   { position: 'hidden', margin: '40px', hourFrom: '00:00', hourTo: '23:59' },
   { position: 'step-one', margin: '80px', hourFrom: '00:00', hourTo: '23:59' },
   { position: 'step-two', margin: '120px', hourFrom: '00:00', hourTo: '23:59' },

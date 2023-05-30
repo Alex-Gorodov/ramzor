@@ -1,5 +1,14 @@
 export type DaySetting = {
-  id: number;
-  date: Date;
-  setting: { position: string, margin: string, hourFrom: string, hourTo: string }
+  id: number | null;
+  setting: {
+    position: string,
+    margin: string,
+    hourFrom: string,
+    hourTo: string
+  }
+}
+
+export type SetterPosition = {
+  position: string;
+  margin: string;
 }
