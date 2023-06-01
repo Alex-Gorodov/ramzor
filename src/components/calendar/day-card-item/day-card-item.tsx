@@ -1,9 +1,9 @@
 import { formatJewishDateInHebrew, toJewishDate } from "jewish-date";
-import { DayCard } from "../../../types/day-card";
+import { CardStatus, DayCard } from "../../../types/day-card";
 import { DAYS_OF_WEEK, SETTER_STATE, MONTHS, STATUSES } from "../../../const";
 import { DaySetting } from "../../../types/day-setting";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSettingVisibility, selectCard } from "../../../store/calendar/calendar-actions";
+import { changeSettingVisibility, removeSelect, selectCard } from "../../../store/calendar/calendar-actions";
 import cn from 'classnames';
 import '../calendar.sass';
 import { RootState } from "../../../store/RootState";
@@ -11,10 +11,11 @@ import { RootState } from "../../../store/RootState";
 type DayCardProps = {
   day: DayCard;
   daySetting: DaySetting;
+  newStatus: CardStatus;
   onClick: () => void;
 };
 
-export function DayCardItem({day, daySetting, onClick}: DayCardProps): JSX.Element {
+export function DayCardItem({day, daySetting, newStatus}: DayCardProps): JSX.Element {
   const isSelected = useSelector((state: RootState) => 
     state.calendar.calendar.find((card) => card.id === day.id)?.isSelected
   );
@@ -29,15 +30,15 @@ export function DayCardItem({day, daySetting, onClick}: DayCardProps): JSX.Eleme
   }
 
   const dispatch = useDispatch();
-  const newStatus = useSelector((state: RootState) => state.calendar.cardStatus);
+
   const handleCardButtonClick = () => {
     dispatch(changeSettingVisibility({cardId: day.id, position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin}));
     dispatch(selectCard({cardId: day.id, isSelected: true}));
-    console.log(day.isSelected);
+    if (day.status === STATUSES[3]) dispatch(removeSelect({cardId: day.id, cardStatus: STATUSES[3]}));
   };
 
   return (
-      <div className={wrapperClassName} style={isСhangeable(day) && isSelected ? {background: newStatus.color} : {background: day.status.color}}>
+      <div className={wrapperClassName} style={isСhangeable(day) ? {background: newStatus.color} : {background: day.status.color}}>
         <p className="calendar__day">{day.date.getDate()}</p>
         <div className="calendar__inner-wrapper">
           <p>{DAYS_OF_WEEK[day.date.getDay()]}</p>
@@ -45,9 +46,9 @@ export function DayCardItem({day, daySetting, onClick}: DayCardProps): JSX.Eleme
           <p>{day.date.getFullYear()}</p>
         </div>
         <span className="calendar__hebrew-date">{formatJewishDateInHebrew(toJewishDate(day.date))}</span>
-        <button className="calendar__btn" data-btn-type={newStatus.value} onClick={handleCardButtonClick}>
+        <button className="calendar__btn" data-btn-type={ isСhangeable(day) ? newStatus.value : day.status.value} onClick={handleCardButtonClick}>
         <img className="calendar__availability-icon" 
-          src={isСhangeable(day) && isSelected ? newStatus.icon : day.status.icon} 
+          src={isСhangeable(day) ? newStatus.icon : day.status.icon} 
           alt={isСhangeable(day) ? newStatus.value : STATUSES[0].value} />
         </button>
         <p className="calendar__extra">
@@ -55,7 +56,7 @@ export function DayCardItem({day, daySetting, onClick}: DayCardProps): JSX.Eleme
             !isСhangeable(day) && day.status.value === STATUSES[4].value ? "נוכחות חובה" : ''
           }
           {
-            isСhangeable(day) && day.isSelected && newStatus.value === STATUSES[2].value ? `${daySetting.setting.hourTo} - ${daySetting.setting.hourFrom}` : ''
+            isСhangeable(day) && newStatus.value === STATUSES[2].value ? `${daySetting.setting.hourTo} - ${daySetting.setting.hourFrom}` : ''
           }
         </p>
       </div>

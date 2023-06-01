@@ -1,18 +1,19 @@
 import { SETTER_STATE, STATUSES } from "../../const";
 import { CalendarState } from "../../types/state";
 import { createReducer } from "@reduxjs/toolkit";
-import { changeCardStatus, changeSettingVisibility, removeSelect, selectCard } from "./calendar-actions";
+import { setCardStatus, changeSettingVisibility, removeSelect, selectCard, changeSettingStatus } from "./calendar-actions";
 import { calendar } from "../../mocks/calendar";
 
 const initialState: CalendarState = {
   calendar: calendar.map((card) => ({
     ...card,
     isSelected: false,
+    status: STATUSES[1],
   })),
   selectedCardId: null,
   position: SETTER_STATE[0].position,
   margin: SETTER_STATE[0].margin,
-  cardStatus: STATUSES[1],
+  settingStatus: STATUSES[1],
 };
 
 export const calendarReducer = createReducer(initialState, (builder) => {
@@ -22,31 +23,13 @@ export const calendarReducer = createReducer(initialState, (builder) => {
       state.selectedCardId = cardId;
       state.position = position;
       state.margin = margin;
-      state.calendar = state.calendar.map((card) =>
-        card.id === cardId ? { ...card, isSelected: true } : card
-      );
     })
-    .addCase(changeCardStatus, (state, action) => {
-      const { cardId, cardStatus } = action.payload;
-      if (state.selectedCardId === cardId) {
-        state.cardStatus = cardStatus;
-      }
-      state.calendar = state.calendar.map((card) =>
-      card.id === cardId ? { ...card, isSelected: true } : card
-      );
-      state.calendar[cardId].status = cardStatus;
+    .addCase(changeSettingStatus, (state, action) => {
+      console.log('before changeSettingStatus: ' + state.settingStatus.color);
+      const {settingStatus} = action.payload;
+      state.settingStatus = settingStatus;
+      console.log('after changeSettingStatus: ' + state.settingStatus.color);
     })
-    // .addCase(selectCard, (state, action) => {
-    //   const { cardId, isSelected } = action.payload;
-    //   if (isSelected) {
-    //     state.selectedCardId = cardId;
-    //   } else {
-    //     state.selectedCardId = null;
-    //   }
-    //   state.calendar = state.calendar.map((card) =>
-    //     card.id === cardId ? { ...card, isSelected } : card
-    //   );
-    // })
     .addCase(selectCard, (state, action) => {
       const { cardId, isSelected } = action.payload;
       state.selectedCardId = cardId;
@@ -57,13 +40,15 @@ export const calendarReducer = createReducer(initialState, (builder) => {
         return card;
       });
     })
-    .addCase(removeSelect, (state, action) => {
+    .addCase(setCardStatus, (state, action) => {      
+      console.log('before setCardStatus: ' + state.settingStatus.color);
       const { cardId, cardStatus } = action.payload;
-      state.selectedCardId = cardId;
-      if (state.selectedCardId === cardId) {
-        state.selectedCardId = null;
-        state.cardStatus = cardStatus;
-      }
+      state.settingStatus = cardStatus;      
+      state.calendar[cardId].status = cardStatus;
+      console.log('after setCardStatus: ' + state.settingStatus.color);
+    })
+    .addCase(removeSelect, (state, action) => {
+      const { cardId } = action.payload;
       state.calendar = state.calendar.map((card) =>
         card.id === cardId ? { ...card, isSelected: false } : card
       );
