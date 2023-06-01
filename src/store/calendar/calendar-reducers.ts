@@ -25,10 +25,8 @@ export const calendarReducer = createReducer(initialState, (builder) => {
       state.margin = margin;
     })
     .addCase(changeSettingStatus, (state, action) => {
-      console.log('before changeSettingStatus: ' + state.settingStatus.color);
       const {settingStatus} = action.payload;
       state.settingStatus = settingStatus;
-      console.log('after changeSettingStatus: ' + state.settingStatus.color);
     })
     .addCase(selectCard, (state, action) => {
       const { cardId, isSelected } = action.payload;
@@ -41,11 +39,9 @@ export const calendarReducer = createReducer(initialState, (builder) => {
       });
     })
     .addCase(setCardStatus, (state, action) => {      
-      console.log('before setCardStatus: ' + state.settingStatus.color);
       const { cardId, cardStatus } = action.payload;
       state.settingStatus = cardStatus;      
       state.calendar[cardId].status = cardStatus;
-      console.log('after setCardStatus: ' + state.settingStatus.color);
     })
     .addCase(removeSelect, (state, action) => {
       const { cardId } = action.payload;
