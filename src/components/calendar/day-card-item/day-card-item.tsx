@@ -21,8 +21,10 @@ export function DayCardItem({day, daySetting, newStatus}: DayCardProps): JSX.Ele
   );
 
   const wrapperClassName = cn('calendar__day-wrapper', {
-    'calendar__day-wrapper--inactive': !day.isIncluded,
-    'calendar__day-wrapper--selected': isSelected,
+    'calendar__day-wrapper--inactive' : !day.isIncluded,
+    'calendar__day-wrapper--selected' : isSelected,
+    'calendar__day-wrapper--partly-in' : daySetting.setting.hourFrom,
+    'calendar__day-wrapper--partly-out' : daySetting.setting.hourTo,
   });
 
   function isСhangeable(day: DayCard) {
@@ -56,7 +58,17 @@ export function DayCardItem({day, daySetting, newStatus}: DayCardProps): JSX.Ele
             !isСhangeable(day) && day.status.value === STATUSES[4].value ? "נוכחות חובה" : ''
           }
           {
-            isСhangeable(day) && newStatus.value === STATUSES[2].value ? `${daySetting.setting.hourTo} - ${daySetting.setting.hourFrom}` : ''
+            daySetting.setting.hourTo && daySetting.setting.hourFrom
+              ? `${daySetting.setting.hourTo} - ${daySetting.setting.hourFrom}` 
+              : !daySetting.setting.hourTo && daySetting.setting.hourFrom
+
+                ? `${daySetting.setting.hourTo ? daySetting.setting.hourTo : 'הגעה ' + daySetting.setting.hourFrom}`
+                : daySetting.setting.hourTo && !daySetting.setting.hourFrom
+
+                  ? `${daySetting.setting.hourFrom ? daySetting.setting.hourFrom : 'יציאה ' + daySetting.setting.hourTo}`
+                  : ''
+          }
+          {
           }
         </p>
       </div>

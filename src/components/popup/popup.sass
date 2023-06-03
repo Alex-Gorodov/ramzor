@@ -1,0 +1,85 @@
+@import '../../style'
+html
+  overflow-y: hidden
+
+.popup
+  &-wrapper
+    position: fixed
+    inset: 0
+    width: 100vw
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: rgba(0, 0, 0, 0.2)
+    z-index: 20
+
+
+  &__item
+    background-color: $white
+    padding: 20px 0 0
+
+  &__swipers-wrapper
+    display: flex
+    max-height: 40px
+    margin: 40px auto
+    justify-content: center
+    gap: 20px
+
+  &__swiper-wrapper
+    position: relative
+    display: flex
+
+    &::before,
+    &::after
+      position: absolute
+      display: block
+      content: ""
+      height: 2px
+      width: 56px
+      background-color: #e5e5e5
+
+    &:first-of-type
+      &::before
+        top: -10px
+        left: 50%
+        transform: translateX(-50%)
+
+      &::after
+        bottom: 10px
+        left: 50%
+        transform: translateX(-50%)
+
+    &:last-of-type
+      &::before
+        top: -10px
+        right: 50%
+        transform: translateX(50%)
+
+      &::after
+        bottom: 10px
+        right: 50%
+        transform: translateX(50%)
+
+  &__swiper
+    position: relative
+
+  &__title
+    margin: 0
+    padding-right: 95px
+    margin-bottom: 50px
+
+  &__buttons-wrapper
+    display: flex
+
+  &__btn
+    font-size: 12px
+    line-height: 14px
+    border: 0.5px solid #e5e5e5
+    border-radius: 1px
+    padding: 15px 65px
+    cursor: pointer
+    background-color: transparent
+
+    &--bold
+      font-weight: 700

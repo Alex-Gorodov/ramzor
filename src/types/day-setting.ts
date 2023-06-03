@@ -3,8 +3,8 @@ export type DaySetting = {
   setting: {
     position: string,
     margin: string,
-    hourFrom: string,
-    hourTo: string
+    hourFrom?: string,
+    hourTo?: string
   }
 }
 
