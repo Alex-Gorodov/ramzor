@@ -1,9 +1,3 @@
-import availableIcon from './img/icons/available.svg';
-import partlyIcon from './img/icons/clock.svg';
-import unavailableIcon from './img/icons/unavailable.svg';
-import lockedIcon from './img/icons/lock.svg';
-
-
 export enum AppRoute {
   Root = 'ramzor/',
 }
@@ -33,7 +27,7 @@ export const DAYS_OF_WEEK = [
     'יום ש’',
   ];
 
-enum StatusesColors {
+export enum StatusesColors {
   Disabled = '#d9d9d9',
   Available = '#559b2d',
   Partly = '#ffa500',
@@ -41,13 +35,13 @@ enum StatusesColors {
   Locked = 'linear-gradient(to bottom, #498427 0%, #2B4E17 100%)',
 }
 
-export const STATUSES = [
-  { isIncluded: false, icon: 'unset', color: StatusesColors.Disabled, value: ''},
-  { isIncluded: true, icon: availableIcon, color: StatusesColors.Available, value: 'available' },
-  { isIncluded: true, icon: partlyIcon, color: StatusesColors.Partly, value: 'partly available' },
-  { isIncluded: true, icon: unavailableIcon, color: StatusesColors.Unavailable, value: 'not available' },
-  { isIncluded: true, icon: lockedIcon, color: StatusesColors.Locked, value: 'locked' },
-]
+export enum StatusesValues {
+  Disabled = 'disabled',
+  Available = 'available',
+  Partly = 'partly',
+  Unavailable = 'unavailable',
+  Locked = 'locked',
+}
 
 export const SETTER_STATE = [
   { position: 'hidden', margin: '40px' },

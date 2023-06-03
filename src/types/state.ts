@@ -10,10 +10,9 @@ export type DataState = {
 
 export type CalendarState = {
   calendar: DayCard[];
-  selectedCardId: number | null;
+  selectedCardIds: Set<number>; // массив с неповторяющимися элементами
   position: string;
   margin: string;
-  settingStatus: CardStatus;
 };
 
 export type DayState = {

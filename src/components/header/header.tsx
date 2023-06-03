@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import { User } from "../../types/user";
 import './header.sass';
 import { calendar } from '../../mocks/calendar';
-import { STATUSES } from '../../const';
 
 type HeaderProps = {
   user: User;
@@ -46,7 +45,7 @@ export function Header({user, dateFrom, dateTo}: HeaderProps): JSX.Element {
           הנך מתייצב ל:&nbsp;
           {
             calendar.filter(
-              (item) => item.status === STATUSES[1] || item.status === STATUSES[4]
+              (item) => item.status === 'available' || item.status === 'locked'
             ).length
           }
          &nbsp;ימי מילואים

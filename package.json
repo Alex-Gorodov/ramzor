@@ -17,6 +17,7 @@
     "dayjs": "^1.11.7",
     "history": "^5.3.0",
     "http-status-codes": "^2.2.0",
+    "immer": "^9.0.21",
     "jewish-date": "^1.0.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
