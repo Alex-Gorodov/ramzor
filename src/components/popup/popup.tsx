@@ -10,6 +10,8 @@ type PopupProps = {
 }
 
 export function Popup({buttonType}: PopupProps): JSX.Element {
+  document.body.style.overflow = 'hidden';
+  
   return (
     <div className="popup-wrapper">
       <div className="popup__item">
