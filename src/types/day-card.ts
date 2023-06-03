@@ -2,6 +2,8 @@ export type CardStatus = {
   icon: string;
   value: string;
   color: string;
+  hourFrom?: string;
+  hourTo?: string;
 }
 
 export type DayCard = {

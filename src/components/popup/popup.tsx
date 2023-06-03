@@ -5,10 +5,11 @@ import { HOURS, MINUTES } from '../../const';
 
 type PopupProps = {
   buttonType: string;
-  onClose: () => void;
+  onCancel?: () => void;
+  onSubmit?: () => void;
 }
 
-export function Popup({buttonType, onClose}: PopupProps): JSX.Element {
+export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element {
   return (
     <div className="popup-wrapper">
       <div className="popup__item">
@@ -71,8 +72,8 @@ export function Popup({buttonType, onClose}: PopupProps): JSX.Element {
           </div>
         </div>
         <div className="popup__buttons-wrapper">
-          <button className="popup__btn" onClick={onClose}>ביטול</button>
-          <button className="popup__btn popup__btn--bold">סיום</button>
+          <button className="popup__btn" onClick={onCancel}>ביטול</button>
+          <button className="popup__btn popup__btn--bold" onClick={onSubmit}>סיום</button>
         </div>
       </div>
     </div>

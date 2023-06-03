@@ -72,8 +72,6 @@ export function CalendarDaySetting({ cardId }: CalendarDaySettingProps): JSX.Ele
     document.body.style.overflow = "hidden";
   }
 
-  // function componentWillMount() {
-  // }
   function componentWillUnmount() {
     setPopup('');
     document.body.style.overflow = "";
@@ -102,8 +100,8 @@ export function CalendarDaySetting({ cardId }: CalendarDaySettingProps): JSX.Ele
         <span className="calendar__set-time__text">שעת הגעה</span>
         <button className="calendar__set-time__trigger" data-time-btn="daily-enter" onClick={onEnterBtnClick}>23:59</button>
       </div>
-      {popup === 'exit' && <Popup buttonType={"daily-exit"} onClose={componentWillUnmount}/>}
-      {popup === 'enter' && <Popup buttonType={"daily-enter"} onClose={componentWillUnmount}/>}
+      {popup === 'exit' && <Popup buttonType={"daily-exit"} onCancel={componentWillUnmount} onSubmit={componentWillUnmount}/>}
+      {popup === 'enter' && <Popup buttonType={"daily-enter"} onCancel={componentWillUnmount} onSubmit={componentWillUnmount}/>}
     </div>
   );
 }
