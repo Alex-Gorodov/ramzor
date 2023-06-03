@@ -17,7 +17,7 @@ const lockedCard: Omit<DayCard, 'date' | 'id'> = {
   status: StatusesValues.Locked
 }
 
-const DISABLED_DAYS = 3;
+export const DISABLED_DAYS = 3;
 
 const getData = (cardsCount: number): DayCard[] => {
   return [...Array(cardsCount)].map((_, index) => {

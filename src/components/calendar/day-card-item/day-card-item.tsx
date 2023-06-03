@@ -81,10 +81,6 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
     }
   }
   
-  if (day.status === StatusesValues.Unavailable) {
-    console.log('day: ' + day);
-  }
-  
   return (
       <div className={wrapperClassName} style={{background: getCardColor(day.status)}}>
         <p className="calendar__day">{day.date.getDate()}</p>

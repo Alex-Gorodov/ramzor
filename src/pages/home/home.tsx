@@ -6,7 +6,7 @@ export function Home(): JSX.Element {
   
   return (
     <div>
-      <Header user={testHeader.user} dateFrom={testHeader.dateFrom} dateTo={testHeader.dateTo}/>
+      <Header user={testHeader.user} />
       <Calendar/>
     </div>
   )
