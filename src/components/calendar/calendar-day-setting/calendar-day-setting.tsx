@@ -3,6 +3,7 @@ import { setCardStatus, changeSettingVisibility, removeSelect, changeSettingStat
 import { SETTER_STATE, STATUSES } from "../../../const";
 import { RootState } from "../../../store/RootState";
 import { useState } from "react";
+import { Popup } from "../../popup/popup";
 
 type CalendarDaySettingProps = {
   cardId: number | null;
@@ -59,6 +60,25 @@ export function CalendarDaySetting({ cardId }: CalendarDaySettingProps): JSX.Ele
     setSettingClosed(!isSettingClosed);
   };
 
+  const [popup, setPopup] = useState('');
+
+  function onExitBtnClick() {
+    setPopup('exit');
+    document.body.style.overflow = "hidden";
+  }
+
+  function onEnterBtnClick() {
+    setPopup('enter');
+    document.body.style.overflow = "hidden";
+  }
+
+  // function componentWillMount() {
+  // }
+  function componentWillUnmount() {
+    setPopup('');
+    document.body.style.overflow = "";
+  }
+
   return (
     <div className="calendar__day-setting" data-show={newPosition}>
       <span className="calendar__setting-toggler" aria-hidden="true" onClick={() => cardId !== null ? handleCloseSetting(cardId) : undefined}></span>
@@ -78,10 +98,12 @@ export function CalendarDaySetting({ cardId }: CalendarDaySettingProps): JSX.Ele
       </div>
       <div className="calendar__set-time">
         <span className="calendar__set-time__text">שעת יציאה</span>
-        <button className="calendar__set-time__trigger" data-time-btn="daily-exit">00:00</button>
+        <button className="calendar__set-time__trigger" data-time-btn="daily-exit" onClick={onExitBtnClick}>00:00</button>
         <span className="calendar__set-time__text">שעת הגעה</span>
-        <button className="calendar__set-time__trigger" data-time-btn="daily-enter">23:59</button>
+        <button className="calendar__set-time__trigger" data-time-btn="daily-enter" onClick={onEnterBtnClick}>23:59</button>
       </div>
+      {popup === 'exit' && <Popup buttonType={"daily-exit"} onClose={componentWillUnmount}/>}
+      {popup === 'enter' && <Popup buttonType={"daily-enter"} onClose={componentWillUnmount}/>}
     </div>
   );
 }

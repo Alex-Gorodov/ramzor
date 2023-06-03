@@ -1,17 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
-import 'swiper/scss/mousewheel';
 import './popup.sass';
-import { Mousewheel } from 'swiper';
 import { HOURS, MINUTES } from '../../const';
 
 type PopupProps = {
   buttonType: string;
+  onClose: () => void;
 }
 
-export function Popup({buttonType}: PopupProps): JSX.Element {
-  document.body.style.overflow = 'hidden';
-  
+export function Popup({buttonType, onClose}: PopupProps): JSX.Element {
   return (
     <div className="popup-wrapper">
       <div className="popup__item">
@@ -26,15 +23,14 @@ export function Popup({buttonType}: PopupProps): JSX.Element {
         <div className="popup__swipers-wrapper">
           <div className="popup__swiper-wrapper">
             <Swiper
-              modules={[Mousewheel]}
               direction="vertical"
               className="popup__swiper popup__swiper--minutes"
               spaceBetween={15}
               slidesPerView={1}
               initialSlide={
                 {
-                  "daily-exit" : MINUTES[MINUTES.length - 1],
-                  "daily-enter" : 0
+                  "daily-exit" : 0,
+                  "daily-enter" : MINUTES[MINUTES.length - 1]
                 }[buttonType]
               }
             >
@@ -56,8 +52,8 @@ export function Popup({buttonType}: PopupProps): JSX.Element {
               slidesPerView={1}
               initialSlide={
                 {
-                  "daily-exit" : HOURS[HOURS.length - 1],
-                  "daily-enter" : 0
+                  "daily-exit" : 0,
+                  "daily-enter" : HOURS[HOURS.length - 1]
                 }[buttonType]
               }
             >
@@ -75,7 +71,7 @@ export function Popup({buttonType}: PopupProps): JSX.Element {
           </div>
         </div>
         <div className="popup__buttons-wrapper">
-          <button className="popup__btn">ביטול</button>
+          <button className="popup__btn" onClick={onClose}>ביטול</button>
           <button className="popup__btn popup__btn--bold">סיום</button>
         </div>
       </div>
