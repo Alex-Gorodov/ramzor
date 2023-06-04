@@ -15,16 +15,16 @@ type PopupProps = {
 
 export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element {
   const dispatch = useDispatch();
-  let hour: string = '00';
-  let minute: string = '00';
+  let hour: number = 0;
+  let minute: number = 0;
 
   const setTimeFrom = () => {
-    dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourFrom: `${hour}:${minute}`}));
+    dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourFrom: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`}));
     if (onSubmit) onSubmit();
   }
 
   const setTimeTo = () => {
-    dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourTo: `${hour}:${minute}`}));
+    dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourTo: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`}));
     if (onSubmit) onSubmit();
   }
 
@@ -46,7 +46,7 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
               className="popup__swiper popup__swiper--minutes"
               spaceBetween={15}
               slidesPerView={1}
-              onSlideChange={(swiper) => minute = swiper.activeIndex.toString()}
+              onSlideChange={(swiper) => minute = swiper.activeIndex}
               initialSlide={
                 {
                   "daily-exit" : 0,
@@ -70,7 +70,7 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
               className="popup__swiper popup__swiper--hours"
               spaceBetween={15}
               slidesPerView={1}
-              onSlideChange={(swiper) => hour = swiper.activeIndex.toString()}
+              onSlideChange={(swiper) => hour = swiper.activeIndex}
               initialSlide={
                 {
                   "daily-exit" : 0,
