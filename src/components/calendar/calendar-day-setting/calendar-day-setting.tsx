@@ -46,6 +46,7 @@ export function CalendarDaySetting(): JSX.Element {
       ? dispatch(changeSettingVisibility({ position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin }))
       : dispatch(changeSettingVisibility({ position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
     setSettingClosed(!isSettingClosed);
+    dispatch(clearSelect());
   };
 
   const [popup, setPopup] = useState('');

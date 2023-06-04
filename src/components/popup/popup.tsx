@@ -46,6 +46,8 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
               className="popup__swiper popup__swiper--minutes"
               spaceBetween={15}
               slidesPerView={1}
+              touchAngle={90}
+              edgeSwipeThreshold={150}
               onSlideChange={(swiper) => minute = swiper.activeIndex}
               initialSlide={
                 {
