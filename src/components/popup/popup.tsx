@@ -4,7 +4,6 @@ import './popup.sass';
 import { HOURS, MINUTES, StatusesValues } from '../../const';
 import { useDispatch } from 'react-redux';
 import { setCardStatus } from '../../store/calendar/calendar-actions';
-// import { useRef } from 'react';
 
 type PopupProps = {
   buttonType: string;
