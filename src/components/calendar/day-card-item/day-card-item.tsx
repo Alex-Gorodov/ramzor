@@ -84,7 +84,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
   
   return (
       <div className={wrapperClassName} style={{background: getCardColor(day.status)}}>
-        <p className="calendar__day">{day.date.getDate()}</p>
+        <p className="calendar__day">{day.date.getDate() < 10 ? '0' + day.date.getDate() : day.date.getDate()}</p>
 
         <div className="calendar__inner-wrapper">
           <p>{DAYS_OF_WEEK[day.date.getDay()]}</p>

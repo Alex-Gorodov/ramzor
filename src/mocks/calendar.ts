@@ -7,6 +7,7 @@ const defaultCard: Omit<DayCard, 'date' | 'id'> = {
 
 const notAvailableCard: Omit<DayCard, 'date' | 'id'> = {
   ...defaultCard,
+  // isIncluded: false,
   status: StatusesValues.Disabled
 }
 
