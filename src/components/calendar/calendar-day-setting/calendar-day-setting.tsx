@@ -24,7 +24,6 @@ export function CalendarDaySetting(): JSX.Element {
     setPartlyButtonActive(!isPartlyButtonActive);
     dispatch(setCardStatus({ newStatus: StatusesValues.Partly }));
     dispatch(changeSettingVisibility({position: SETTER_STATE[2].position, margin: SETTER_STATE[2].margin }));
-    // dispatch(clearSelect({ cardStatus: STATUSES[2], cardId }));
   };
   
   const handleUnavailableButtonClick = () => {
@@ -32,7 +31,6 @@ export function CalendarDaySetting(): JSX.Element {
     dispatch(changeSettingVisibility({position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
     dispatch(setCardStatus({ newStatus: StatusesValues.Unavailable}));
     dispatch(clearSelect());
-    setButtons(true, false, false);
   };
   
   const handleAvailableButtonClick = () => {
@@ -40,6 +38,7 @@ export function CalendarDaySetting(): JSX.Element {
     dispatch(setCardStatus({ newStatus: StatusesValues.Available }));
     dispatch(changeSettingVisibility({position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
     dispatch(clearSelect());
+
   };
 
   const handleCloseSetting = () => {
@@ -66,6 +65,18 @@ export function CalendarDaySetting(): JSX.Element {
     document.body.style.overflow = "";
   }
 
+  function setTimeTo() {
+    setButtons(true, false, false);
+    componentWillUnmount();
+    dispatch(clearSelect());
+  }
+
+  function setTimeFrom() {
+    setButtons(true, false, false);
+    componentWillUnmount();
+    dispatch(clearSelect());
+  }
+
   return (
     <div className="calendar__day-setting" data-show={newPosition}>
       <span className="calendar__setting-toggler" aria-hidden="true" onClick={() => handleCloseSetting()}></span>
@@ -89,8 +100,8 @@ export function CalendarDaySetting(): JSX.Element {
         <span className="calendar__set-time__text">שעת הגעה</span>
         <button className="calendar__set-time__trigger" data-time-btn="daily-enter" onClick={onEnterBtnClick}>23:59</button>
       </div>
-      {popup === 'exit' && <Popup buttonType={"daily-exit"} onCancel={componentWillUnmount} onSubmit={componentWillUnmount}/>}
-      {popup === 'enter' && <Popup buttonType={"daily-enter"} onCancel={componentWillUnmount} onSubmit={componentWillUnmount}/>}
+      {popup === 'exit' && <Popup buttonType={"daily-exit"} onCancel={componentWillUnmount} onSubmit={setTimeTo}/>}
+      {popup === 'enter' && <Popup buttonType={"daily-enter"} onCancel={componentWillUnmount} onSubmit={setTimeFrom}/>}
     </div>
   );
 }

@@ -2,13 +2,11 @@ import { StatusesValues } from "../const";
 import { DayCard } from "../types/day-card";
 
 const defaultCard: Omit<DayCard, 'date' | 'id'> = {
-  isIncluded: true,
   status: StatusesValues.Available
 }
 
 const notAvailableCard: Omit<DayCard, 'date' | 'id'> = {
   ...defaultCard,
-  isIncluded: false,
   status: StatusesValues.Disabled
 }
 

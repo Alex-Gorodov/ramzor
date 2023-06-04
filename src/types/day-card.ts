@@ -5,9 +5,7 @@ export type CardStatus =
 
 export type DayCard = {
   id: number;
-  isIncluded: boolean; //TODO remove it
   date: Date;
-  // isSelected: boolean; //TODO remove it
   hourFrom?: string;
   hourTo?: string;
   status: StatusesValues;

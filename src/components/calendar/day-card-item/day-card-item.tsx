@@ -23,14 +23,14 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
   );
 
   const wrapperClassName = cn('calendar__day-wrapper', {
-    'calendar__day-wrapper--inactive' : !day.isIncluded,
+    'calendar__day-wrapper--inactive' : day.status === StatusesValues.Disabled,
     'calendar__day-wrapper--selected' : isSelected,
     'calendar__day-wrapper--partly-in' : day.hourFrom,
     'calendar__day-wrapper--partly-out' : day.hourTo,
   });
 
   function isСhangeable(day: DayCard) {
-    return day.isIncluded !== false;
+    return day.status !== StatusesValues.Disabled && day.status !== StatusesValues.Locked;
   }
 
   const dispatch = useDispatch();

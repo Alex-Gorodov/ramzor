@@ -26,11 +26,11 @@ export const calendarReducer = createReducer(initialState, (builder) => {
     })
 
     .addCase(setCardStatus, (state, action) => {
-      const {newStatus} = action.payload;
+      const {newStatus, hourFrom, hourTo} = action.payload;
       const cardIds = state.selectedCardIds;
       state.calendar = state.calendar.map((card) => {
         if (cardIds.has(card.id)) {
-          return { ...card, status: newStatus}
+          return { ...card, status: newStatus, hourTo: hourTo, hourFrom: hourFrom}
         }
         return card;
       })
