@@ -104,9 +104,9 @@ export function CalendarDaySetting(): JSX.Element {
       </div>
       <div className="calendar__set-time">
         <span className="calendar__set-time__text">שעת יציאה</span>
-        <button className="calendar__set-time__trigger" data-time-btn="daily-exit" onClick={onExitBtnClick}>00:00</button>
+        <button className="calendar__set-time__trigger" data-time-btn="daily-exit" onClick={onExitBtnClick}>{day?.hourTo ? day.hourTo : '00:00'}</button>
         <span className="calendar__set-time__text">שעת הגעה</span>
-        <button className="calendar__set-time__trigger" data-time-btn="daily-enter" onClick={onEnterBtnClick}>23:59</button>
+        <button className="calendar__set-time__trigger" data-time-btn="daily-enter" onClick={onEnterBtnClick}>{day?.hourFrom ? day.hourFrom : '23:59'}</button>
       </div>
       {popup === 'exit' && <Popup buttonType={"daily-exit"} onCancel={componentWillUnmount} onSubmit={setTimeTo}/>}
       {popup === 'enter' && <Popup buttonType={"daily-enter"} onCancel={componentWillUnmount} onSubmit={setTimeFrom}/>}
