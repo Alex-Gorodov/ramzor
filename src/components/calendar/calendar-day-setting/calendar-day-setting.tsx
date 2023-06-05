@@ -8,6 +8,13 @@ import { Popup } from "../../popup/popup";
 export function CalendarDaySetting(): JSX.Element {
   const dispatch = useDispatch();
   const newPosition = useSelector((state: RootState) => state.calendar.position);
+  
+  const selected = useSelector((state: RootState) => 
+    state.calendar.selectedCardIds.values().next().value
+  );
+
+  const day = useSelector((state: RootState) => state.calendar.calendar[selected]);
+
   const [isSettingClosed, setSettingClosed] = useState(true);
   const [isPartlyButtonActive, setPartlyButtonActive] = useState(false);
   const [isAvailableButtonActive, setAvailableButtonActive] = useState(true);
@@ -22,7 +29,7 @@ export function CalendarDaySetting(): JSX.Element {
   const handlePartlyButtonClick = () => {
     setButtons(false, !isPartlyButtonActive, false);
     setPartlyButtonActive(!isPartlyButtonActive);
-    dispatch(setCardStatus({ newStatus: StatusesValues.Partly }));
+    dispatch(setCardStatus({ newStatus: StatusesValues.Partly, hourFrom: day.hourFrom, hourTo: day.hourTo}));
     dispatch(changeSettingVisibility({position: SETTER_STATE[2].position, margin: SETTER_STATE[2].margin }));
   };
   

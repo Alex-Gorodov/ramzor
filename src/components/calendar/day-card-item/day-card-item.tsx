@@ -11,6 +11,7 @@ import availableIcon from '../../../img/icons/available.svg';
 import partlyIcon from '../../../img/icons/clock.svg';
 import unavailableIcon from '../../../img/icons/unavailable.svg';
 import lockedIcon from '../../../img/icons/lock.svg'
+import { clearSelect } from "../../../store/calendar/calendar-actions";
 
 type DayCardProps = {
   day: DayCard;
@@ -20,6 +21,10 @@ type DayCardProps = {
 export function DayCardItem({day}: DayCardProps): JSX.Element {
   const isSelected = useSelector((state: RootState) => 
     state.calendar.selectedCardIds.has(day.id)
+  );
+
+  const hasSelected = useSelector((state: RootState) => 
+    state.calendar.selectedCardIds.size !== 0
   );
 
   const wrapperClassName = cn('calendar__day-wrapper', {
@@ -37,22 +42,24 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
   const dispatch = useDispatch();
 
   const handleCardButtonClick = () => {
-    dispatch(changeSettingVisibility({position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin}));
+    hasSelected && dispatch(changeSettingVisibility({position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin}));
+    !hasSelected && dispatch(changeSettingVisibility({position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin}));
+    hasSelected && !isSelected && dispatch(clearSelect()) && dispatch(changeSettingVisibility({position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin}));
     dispatch(toggleSelect({cardId: day.id}));
   };
 
   const renderImage = (status: StatusesValues): string => {
     switch (status) {
-      case 'available':
+      case StatusesValues.Available:
         return availableIcon;
 
       case StatusesValues.Partly:
         return partlyIcon;
 
-      case 'unavailable':
+      case StatusesValues.Unavailable:
         return unavailableIcon;
 
-      case 'locked':
+      case StatusesValues.Locked:
         return lockedIcon;
         
       default: 
@@ -62,7 +69,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
 
   const getCardColor = (status: StatusesValues): StatusesColors => {
     switch (status) {
-      case 'available':
+      case StatusesValues.Available:
         return StatusesColors.Available;
 
       case StatusesValues.Partly:
@@ -71,10 +78,10 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
       case StatusesValues.Unavailable:
         return StatusesColors.Unavailable;
 
-      case 'locked':
+      case StatusesValues.Locked:
         return StatusesColors.Locked;
 
-      case 'disabled':
+      case StatusesValues.Disabled:
         return StatusesColors.Disabled;
 
       default: 

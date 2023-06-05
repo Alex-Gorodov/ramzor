@@ -7,7 +7,6 @@ const defaultCard: Omit<DayCard, 'date' | 'id'> = {
 
 const notAvailableCard: Omit<DayCard, 'date' | 'id'> = {
   ...defaultCard,
-  // isIncluded: false,
   status: StatusesValues.Disabled
 }
 
@@ -20,6 +19,7 @@ export const DISABLED_DAYS = 3;
 
 const getData = (cardsCount: number): DayCard[] => {
   return [...Array(cardsCount)].map((_, index) => {
+    // создаем массив, каждый элемент которого принимает 2 аргумета, первый из которых нам не важен
     let card;
 
     const isIncluded = index >= DISABLED_DAYS && index < cardsCount - DISABLED_DAYS;
@@ -32,14 +32,13 @@ const getData = (cardsCount: number): DayCard[] => {
     } else {
       card = notAvailableCard;
     }
-
+    
     return {
       ...card,
       id: index,
-      date: new Date(2023, 4, index + 20)
+      date: new Date(2023, 5, index + 5 - DISABLED_DAYS)
     }
   })
 }
 
-// создаем массив, каждый элемент которого принимает 2 аргумета, первый из которых нам не важен (_, id)
 export const calendar: DayCard[] = getData(30);

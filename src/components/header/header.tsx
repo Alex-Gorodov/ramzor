@@ -34,7 +34,7 @@ export function Header({user}: HeaderProps): JSX.Element {
             <br/>
             {
               dateFrom.getMonth() === dateTo.getMonth()
-                ? `${formatDate(dateTo, 'DD/MM/YYYY')} - ${dateFrom.getDate()}`
+                ? `${formatDate(dateTo, 'DD/MM/YYYY')} - ${dateFrom.getDate() < 10 ? '0' + dateFrom.getDate() : dateFrom.getDate()}`
                 : `${formatDate(dateTo, 'DD/MM/YYYY')} - ${formatDate(dateFrom, 'DD/MM')}`
             }</p>
           <p className="header__description">

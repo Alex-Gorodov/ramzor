@@ -2,8 +2,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
 import './popup.sass';
 import { HOURS, MINUTES, StatusesValues } from '../../const';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCardStatus } from '../../store/calendar/calendar-actions';
+import { RootState } from '../../store/RootState';
 
 type PopupProps = {
   buttonType: string;
@@ -14,16 +15,30 @@ type PopupProps = {
 
 export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element {
   const dispatch = useDispatch();
+  const selected = useSelector((state: RootState) => 
+    state.calendar.selectedCardIds.values().next().value
+  );
+
+  const day = useSelector((state: RootState) => state.calendar.calendar[selected])
+
   let hour: number = 0;
   let minute: number = 0;
 
   const setTimeFrom = () => {
-    dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourFrom: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`}));
+    console.log(day);
+
+    day.hourTo
+      ? dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourFrom: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`, hourTo: day.hourTo}))
+      : dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourFrom: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`}))
     if (onSubmit) onSubmit();
   }
 
   const setTimeTo = () => {
-    dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourTo: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`}));
+    console.log(day);
+    
+    day.hourFrom 
+      ? dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourFrom: day.hourFrom, hourTo: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`}))
+      : dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourTo: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`}))
     if (onSubmit) onSubmit();
   }
 
