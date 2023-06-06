@@ -1,5 +1,9 @@
+export const MINUTES = Array.from({ length: 60 }, (_, index) => index);
+export const HOURS = Array.from({ length: 24 }, (_, index) => index);
+
 export enum AppRoute {
   Root = 'ramzor/',
+  Login = '/login'
 }
 
 export const MONTHS = [
@@ -49,5 +53,8 @@ export const SETTER_STATE = [
   { position: 'step-two', margin: '120px' },
 ]
 
-export const MINUTES = Array.from({ length: 60 }, (_, index) => index);
-export const HOURS = Array.from({ length: 24 }, (_, index) => index);
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}

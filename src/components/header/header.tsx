@@ -1,22 +1,21 @@
 import dayjs from 'dayjs';
-import { User } from "../../types/user";
 import './header.sass';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/RootState';
 import { DISABLED_DAYS } from '../../mocks/calendar';
 
-type HeaderProps = {
-  user: User;
-}
-
 export const formatDate = (date: Date, format: string) =>
   dayjs(date).format(format);
 
   
-export function Header({user}: HeaderProps): JSX.Element {
+export function Header(): JSX.Element {
   const calendar = useSelector((state: RootState) => state.calendar.calendar);
   const dateFrom = calendar[DISABLED_DAYS].date;
   const dateTo = calendar[calendar.length - DISABLED_DAYS - 1].date;
+
+  const userInfo = useSelector(
+    (state: RootState) => state.auth.userInfo
+  );
 
   return (
     <header className="header">
@@ -24,7 +23,7 @@ export function Header({user}: HeaderProps): JSX.Element {
         <h1 className="header__title">שעון לחימה</h1>
       </div>
       <div className="header__content-wrapper">
-        <p className="header__subtitle">שלום, {user.firstName}</p>
+        <p className="header__subtitle">שלום, {userInfo ? userInfo.firstName : ''}</p>
         <div className="header__description-wrapper">
           <p className="header__description">
             <b>

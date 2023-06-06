@@ -25,7 +25,6 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
   let minute: number = 0;
 
   const setTimeFrom = () => {
-    console.log(day);
 
     day.hourTo
       ? dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourFrom: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`, hourTo: day.hourTo}))
@@ -34,7 +33,6 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
   }
 
   const setTimeTo = () => {
-    console.log(day);
     
     day.hourFrom 
       ? dispatch(setCardStatus({newStatus: StatusesValues.Partly, hourFrom: day.hourFrom, hourTo: `${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`}))

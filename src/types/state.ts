@@ -1,5 +1,8 @@
 import { store } from "../store";
 import { CardStatus, DayCard } from "./day-card";
+import { UserAuthData } from "./user";
+
+export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -21,3 +24,7 @@ export type DayState = {
   date: Date;
   daySetting: CardStatus;
 }
+
+export type AuthState = {
+  userInfo: UserAuthData | undefined;
+};
