@@ -113,7 +113,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
           }
           {
             day.hourTo && day.hourFrom
-              ? `${day.hourTo} - ${day.hourFrom}` 
+              ? `${day.hourFrom} - ${day.hourTo}` 
               : !day.hourTo && day.hourFrom
 
                 ? `${day.hourTo ? day.hourTo : 'הגעה ' + day.hourFrom}`
