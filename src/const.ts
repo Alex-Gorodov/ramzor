@@ -2,8 +2,8 @@ export const MINUTES = Array.from({ length: 60 }, (_, index) => index);
 export const HOURS = Array.from({ length: 24 }, (_, index) => index);
 
 export enum AppRoute {
-  Root = 'ramzor/',
-  Login = '/login'
+  Root = '/desk',
+  Login = 'ramzor/login'
 }
 
 export const MONTHS = [

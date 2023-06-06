@@ -2,7 +2,7 @@
   "name": "ramzor",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alex-gorodov.github.io/login",
+  "homepage": "https://alex-gorodov.github.io/ramzor/login",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
