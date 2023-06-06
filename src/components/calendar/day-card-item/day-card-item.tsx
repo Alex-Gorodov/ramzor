@@ -122,8 +122,6 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
                   ? `${day.hourFrom ? day.hourFrom : 'יציאה ' + day.hourTo}`
                   : ''
           }
-          {
-          }
         </p>
       </div>
   );
