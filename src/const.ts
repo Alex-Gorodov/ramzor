@@ -3,7 +3,6 @@ export const HOURS = Array.from({ length: 24 }, (_, index) => index);
 
 export enum AppRoute {
   Root = 'ramzor/',
-  Desk = '/desk',
   Login = '/login'
 }
 

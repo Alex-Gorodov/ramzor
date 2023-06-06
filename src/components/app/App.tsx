@@ -15,7 +15,7 @@ export const App: FC = () => {
       <HistoryRouter history={browserHistory}>
         <Provider store={store}>
           <Routes>
-            <Route path={AppRoute.Login} element={<LoginPage/>} />
+            <Route path={AppRoute.Login} element={<LoginPage />} />
             <Route path={AppRoute.Root} element={<HomePage />} />
           </Routes>
         </Provider>
