@@ -3,6 +3,7 @@ import './header.sass';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/RootState';
 import { DISABLED_DAYS } from '../../mocks/calendar';
+import { MAX_UNAVAILABLE, StatusesValues } from '../../const';
 
 export const formatDate = (date: Date, format: string) =>
   dayjs(date).format(format);
@@ -38,7 +39,7 @@ export function Header(): JSX.Element {
             }</p>
           <p className="header__description">
             בשעון הלחימה תוכל לחסום ימי מילואים בהם אינך יכול להתייצב.<br/>
-            בתעסוקה זו באפשרותך לחסום עד 4 ימי מילואים.
+            בתעסוקה זו באפשרותך לחסום עד {MAX_UNAVAILABLE} ימי מילואים.
             <br/><b>
               שים לב! קיים מספר מוגבל של ימים אותם ניתן לחסום.<br/>
               קיימים ימים נעולים אליהם אתה מחויב להתייצב.
@@ -48,8 +49,11 @@ export function Header(): JSX.Element {
         <b className="header__description--summary">
           הנך מתייצב ל:&nbsp;
           {
-            calendar.filter(
-              (card) => card.status === 'available' || card.status === 'locked'
+            calendar.filter
+            ((card) => 
+              card.status === StatusesValues.Available
+              || card.status === StatusesValues.Locked
+              || card.status === StatusesValues.Partly
             ).length
           }
          &nbsp;ימי מילואים

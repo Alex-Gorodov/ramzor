@@ -12,7 +12,6 @@ import partlyIcon from '../../../img/icons/clock.svg';
 import unavailableIcon from '../../../img/icons/unavailable.svg';
 import lockedIcon from '../../../img/icons/lock.svg'
 import { clearSelect } from "../../../store/calendar/calendar-actions";
-import React from "react";
 
 type DayCardProps = {
   day: DayCard;
@@ -115,7 +114,6 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
           }
           {
             day.hourTo && day.hourFrom
-              // ? `${day.hourFrom} - ${day.hourTo}` 
               ? `${day.hourFrom > day.hourTo ? `${day.hourFrom} - ${day.hourTo}` : `${'הגעה ' + day.hourFrom} ${'יציאה ' + day.hourTo}`}`
               : !day.hourTo && day.hourFrom
 

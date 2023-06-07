@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setCardStatus, changeSettingVisibility, clearSelect } from "../../../store/calendar/calendar-actions";
-import { SETTER_STATE, StatusesValues } from "../../../const";
+import { MAX_UNAVAILABLE, SETTER_STATE, StatusesValues } from "../../../const";
 import { RootState } from "../../../store/RootState";
 import { useState } from "react";
 import { Popup } from "../../popup/popup";
@@ -13,6 +13,7 @@ export function CalendarDaySetting(): JSX.Element {
     state.calendar.selectedCardIds.values().next().value
   );
 
+  const calendar = useSelector((state: RootState) => state.calendar.calendar)
   const day = useSelector((state: RootState) => state.calendar.calendar[selected]);
 
   const [isSettingClosed, setSettingClosed] = useState(true);
@@ -27,17 +28,18 @@ export function CalendarDaySetting(): JSX.Element {
   }
 
   const handlePartlyButtonClick = () => {
-    setButtons(false, !isPartlyButtonActive, false);
-    setPartlyButtonActive(!isPartlyButtonActive);
+    setButtons(false, true, false);
     dispatch(setCardStatus({ newStatus: StatusesValues.Partly, hourFrom: day.hourFrom, hourTo: day.hourTo}));
     dispatch(changeSettingVisibility({position: SETTER_STATE[2].position, margin: SETTER_STATE[2].margin }));
   };
   
   const handleUnavailableButtonClick = () => {
-    setButtons(false, false, !isUnavailableButtonActive);
+    setButtons(false, false, true);
     dispatch(changeSettingVisibility({position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
-    dispatch(setCardStatus({ newStatus: StatusesValues.Unavailable}));
-    dispatch(clearSelect());
+    if (calendar.filter((card) => card.status === StatusesValues.Unavailable).length < MAX_UNAVAILABLE) {
+      dispatch(setCardStatus({ newStatus: StatusesValues.Unavailable}));
+      dispatch(clearSelect());
+    } else window.alert('oops... to much closed days')
   };
   
   const handleAvailableButtonClick = () => {

@@ -6,11 +6,6 @@ export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
-export type DataState = {
-  calendar: DayCard[],
-  daySetting: { position: string, margin: string, hourFrom: string, hourTo: string};
-}
-
 export type CalendarState = {
   calendar: DayCard[];
   selectedCardIds: Set<number>; // массив с неповторяющимися элементами

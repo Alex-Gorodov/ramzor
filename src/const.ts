@@ -1,5 +1,6 @@
 export const MINUTES = Array.from({ length: 60 }, (_, index) => index);
 export const HOURS = Array.from({ length: 24 }, (_, index) => index);
+export const MAX_UNAVAILABLE = 4;
 
 export enum AppRoute {
   Root = '/desk',

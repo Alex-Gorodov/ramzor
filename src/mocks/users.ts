@@ -26,6 +26,11 @@ export const users: UserAuthData[] = [
     secondName: 'ליפסקי',
     id: 1111111,
   },
+  {
+    firstName: 'דניאל',
+    secondName: 'דהן',
+    id: 8376326,
+  },
 ]
 
 export const userIds = users.map(user => {
