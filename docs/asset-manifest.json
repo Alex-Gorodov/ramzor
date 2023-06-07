@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ramzor/static/css/main.4137f2b2.css",
+    "main.js": "/ramzor/static/js/main.ec4ebba2.js",
+    "index.html": "/ramzor/index.html",
+    "static/media/attention.svg": "/ramzor/static/media/attention.d28f7abae84603c00fae.svg",
+    "static/media/lock.svg": "/ramzor/static/media/lock.84a36334c4f5c80cf7182301394a9b05.svg",
+    "static/media/btn-unavailable.svg": "/ramzor/static/media/btn-unavailable.2318454874382b340a9d.svg",
+    "static/media/btn-available.svg": "/ramzor/static/media/btn-available.74ddea1ea541087018a5.svg",
+    "static/media/unavailable.svg": "/ramzor/static/media/unavailable.c23cd248debc76632a8a526f7a9e7c86.svg",
+    "static/media/btn-partly.svg": "/ramzor/static/media/btn-partly.dc03cd4bf8b4a28a8730.svg",
+    "static/media/available.svg": "/ramzor/static/media/available.f1e58d1a9b07cc22c39b1f114191300d.svg",
+    "static/media/info.svg": "/ramzor/static/media/info.6ec0ffcff2fc097df3ca.svg",
+    "static/media/clock.svg": "/ramzor/static/media/clock.e4681dd94d04742b4212421a574984e4.svg",
+    "static/media/triangle.svg": "/ramzor/static/media/triangle.2468a6bfae327c639a9b.svg",
+    "main.4137f2b2.css.map": "/ramzor/static/css/main.4137f2b2.css.map",
+    "main.ec4ebba2.js.map": "/ramzor/static/js/main.ec4ebba2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4137f2b2.css",
+    "static/js/main.ec4ebba2.js"
+  ]
+}
