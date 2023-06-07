@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/login/static/css/main.5d19486c.css",
-    "main.js": "/login/static/js/main.dca4164d.js",
-    "index.html": "/login/index.html",
-    "static/media/attention.svg": "/login/static/media/attention.d28f7abae84603c00fae.svg",
-    "static/media/lock.svg": "/login/static/media/lock.84a36334c4f5c80cf7182301394a9b05.svg",
-    "static/media/btn-unavailable.svg": "/login/static/media/btn-unavailable.2318454874382b340a9d.svg",
-    "static/media/btn-available.svg": "/login/static/media/btn-available.74ddea1ea541087018a5.svg",
-    "static/media/unavailable.svg": "/login/static/media/unavailable.c23cd248debc76632a8a526f7a9e7c86.svg",
-    "static/media/btn-partly.svg": "/login/static/media/btn-partly.dc03cd4bf8b4a28a8730.svg",
-    "static/media/available.svg": "/login/static/media/available.f1e58d1a9b07cc22c39b1f114191300d.svg",
-    "static/media/info.svg": "/login/static/media/info.6ec0ffcff2fc097df3ca.svg",
-    "static/media/clock.svg": "/login/static/media/clock.e4681dd94d04742b4212421a574984e4.svg",
-    "static/media/triangle.svg": "/login/static/media/triangle.2468a6bfae327c639a9b.svg",
-    "main.5d19486c.css.map": "/login/static/css/main.5d19486c.css.map",
-    "main.dca4164d.js.map": "/login/static/js/main.dca4164d.js.map"
+    "main.css": "/ramzor/login/static/css/main.b77092c7.css",
+    "main.js": "/ramzor/login/static/js/main.d2254a09.js",
+    "index.html": "/ramzor/login/index.html",
+    "static/media/attention.svg": "/ramzor/login/static/media/attention.d28f7abae84603c00fae.svg",
+    "static/media/lock.svg": "/ramzor/login/static/media/lock.84a36334c4f5c80cf7182301394a9b05.svg",
+    "static/media/btn-unavailable.svg": "/ramzor/login/static/media/btn-unavailable.2318454874382b340a9d.svg",
+    "static/media/btn-available.svg": "/ramzor/login/static/media/btn-available.74ddea1ea541087018a5.svg",
+    "static/media/unavailable.svg": "/ramzor/login/static/media/unavailable.c23cd248debc76632a8a526f7a9e7c86.svg",
+    "static/media/btn-partly.svg": "/ramzor/login/static/media/btn-partly.dc03cd4bf8b4a28a8730.svg",
+    "static/media/available.svg": "/ramzor/login/static/media/available.f1e58d1a9b07cc22c39b1f114191300d.svg",
+    "static/media/info.svg": "/ramzor/login/static/media/info.6ec0ffcff2fc097df3ca.svg",
+    "static/media/clock.svg": "/ramzor/login/static/media/clock.e4681dd94d04742b4212421a574984e4.svg",
+    "static/media/triangle.svg": "/ramzor/login/static/media/triangle.2468a6bfae327c639a9b.svg",
+    "main.b77092c7.css.map": "/ramzor/login/static/css/main.b77092c7.css.map",
+    "main.d2254a09.js.map": "/ramzor/login/static/js/main.d2254a09.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d19486c.css",
-    "static/js/main.dca4164d.js"
+    "static/css/main.b77092c7.css",
+    "static/js/main.d2254a09.js"
   ]
 }
