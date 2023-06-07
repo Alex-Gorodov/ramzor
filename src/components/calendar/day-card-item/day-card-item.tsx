@@ -12,6 +12,7 @@ import partlyIcon from '../../../img/icons/clock.svg';
 import unavailableIcon from '../../../img/icons/unavailable.svg';
 import lockedIcon from '../../../img/icons/lock.svg'
 import { clearSelect } from "../../../store/calendar/calendar-actions";
+import React from "react";
 
 type DayCardProps = {
   day: DayCard;
@@ -33,6 +34,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
     'calendar__day-wrapper--partly' : day.hourFrom && day.hourTo,
     'calendar__day-wrapper--partly-in' : day.hourFrom && !day.hourTo,
     'calendar__day-wrapper--partly-out' : day.hourTo && !day.hourFrom,
+    'calendar__day-wrapper--partly-in-out' : day.hourFrom && day.hourTo && day.hourTo > day.hourFrom
   });
 
   function isСhangeable(day: DayCard) {
@@ -113,7 +115,8 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
           }
           {
             day.hourTo && day.hourFrom
-              ? `${day.hourFrom} - ${day.hourTo}` 
+              // ? `${day.hourFrom} - ${day.hourTo}` 
+              ? `${day.hourFrom > day.hourTo ? `${day.hourFrom} - ${day.hourTo}` : `${'הגעה ' + day.hourFrom} ${'יציאה ' + day.hourTo}`}`
               : !day.hourTo && day.hourFrom
 
                 ? `${day.hourTo ? day.hourTo : 'הגעה ' + day.hourFrom}`
