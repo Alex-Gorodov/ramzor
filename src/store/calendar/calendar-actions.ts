@@ -8,3 +8,5 @@ export const setCardStatus = createAction<{newStatus: StatusesValues, hourFrom?:
 export const toggleSelect = createAction<{cardId: number}>('calendar/toggleSelect');
 
 export const clearSelect = createAction('calendar/clearSelect');
+
+export const setActiveButton = createAction<{activeButton: StatusesValues}>('calendar/setActiveButton');

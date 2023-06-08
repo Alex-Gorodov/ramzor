@@ -52,7 +52,7 @@ export function Login() {
  
         <button className="login__btn" type="submit" disabled={!isInputFilled}>
           {
-            isInputFilled
+            isInputFilled && userIds.includes(Number(loginRef.current?.value))
               ? <RotatingLines
                   strokeColor="white"
                   strokeWidth="5"

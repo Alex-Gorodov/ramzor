@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCardStatus, changeSettingVisibility, clearSelect } from "../../../store/calendar/calendar-actions";
+import { setCardStatus, changeSettingVisibility, clearSelect, setActiveButton } from "../../../store/calendar/calendar-actions";
 import { MAX_UNAVAILABLE, SETTER_STATE, StatusesValues } from "../../../const";
 import { RootState } from "../../../store/RootState";
 import { useState } from "react";
@@ -15,26 +15,18 @@ export function CalendarDaySetting(): JSX.Element {
 
   const calendar = useSelector((state: RootState) => state.calendar.calendar)
   const day = useSelector((state: RootState) => state.calendar.calendar[selected]);
+  const activeButton = useSelector((state: RootState) => state.calendar.activeButton);
 
   const [isSettingClosed, setSettingClosed] = useState(true);
-  const [isPartlyButtonActive, setPartlyButtonActive] = useState(false);
-  const [isAvailableButtonActive, setAvailableButtonActive] = useState(true);
-  const [isUnavailableButtonActive, setUnavailableButtonActive] = useState(false);
-
-  function setButtons(available: boolean, partly: boolean, unavailable: boolean) {
-    setAvailableButtonActive(available);
-    setPartlyButtonActive(partly);
-    setUnavailableButtonActive(unavailable);
-  }
 
   const handlePartlyButtonClick = () => {
-    setButtons(false, true, false);
+    dispatch(setActiveButton({activeButton: StatusesValues.Partly}));
     dispatch(setCardStatus({ newStatus: StatusesValues.Partly, hourFrom: day.hourFrom, hourTo: day.hourTo}));
     dispatch(changeSettingVisibility({position: SETTER_STATE[2].position, margin: SETTER_STATE[2].margin }));
   };
   
   const handleUnavailableButtonClick = () => {
-    setButtons(false, false, true);
+    dispatch(setActiveButton({activeButton: StatusesValues.Unavailable}));
     dispatch(changeSettingVisibility({position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
     if (calendar.filter((card) => card.status === StatusesValues.Unavailable).length < MAX_UNAVAILABLE) {
       dispatch(setCardStatus({ newStatus: StatusesValues.Unavailable}));
@@ -46,7 +38,7 @@ export function CalendarDaySetting(): JSX.Element {
   };
   
   const handleAvailableButtonClick = () => {
-    setButtons(true, false, false);
+    dispatch(setActiveButton({activeButton: StatusesValues.Available}));
     dispatch(setCardStatus({ newStatus: StatusesValues.Available }));
     dispatch(changeSettingVisibility({position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
     dispatch(clearSelect());
@@ -79,13 +71,11 @@ export function CalendarDaySetting(): JSX.Element {
   }
 
   function setTimeTo() {
-    setButtons(true, false, false);
     componentWillUnmount();
     dispatch(clearSelect());
   }
 
   function setTimeFrom() {
-    setButtons(true, false, false);
     componentWillUnmount();
     dispatch(clearSelect());
   }
@@ -95,15 +85,15 @@ export function CalendarDaySetting(): JSX.Element {
       <span className="calendar__setting-toggler" aria-hidden="true" onClick={() => handleCloseSetting()}></span>
       <div className="calendar__buttons-wrapper">
         <button
-          className={`calendar__setting-btn calendar__setting-btn--full ${isAvailableButtonActive ? 'calendar__setting-btn--full-active' : ''}`}
+          className={`calendar__setting-btn calendar__setting-btn--full ${activeButton === StatusesValues.Available ? 'calendar__setting-btn--full-active' : ''}`}
           onClick={() => handleAvailableButtonClick()}
         >נוכחות מלאה</button>
         <button
-          className={`calendar__setting-btn calendar__setting-btn--partly ${isPartlyButtonActive ? 'calendar__setting-btn--partly-active' : ''}`}
+          className={`calendar__setting-btn calendar__setting-btn--partly ${activeButton === StatusesValues.Partly ? 'calendar__setting-btn--partly-active' : ''}`}
           onClick={() => handlePartlyButtonClick()}
         >נוכחות חלקית</button>
         <button
-          className={`calendar__setting-btn calendar__setting-btn--unavailable ${isUnavailableButtonActive ? 'calendar__setting-btn--unavailable-active' : ''}`}
+          className={`calendar__setting-btn calendar__setting-btn--unavailable ${activeButton === StatusesValues.Unavailable ? 'calendar__setting-btn--unavailable-active' : ''}`}
           onClick={() => handleUnavailableButtonClick()}
         >חסימה</button>
       </div>

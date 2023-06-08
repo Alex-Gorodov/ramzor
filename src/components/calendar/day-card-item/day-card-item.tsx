@@ -2,7 +2,7 @@ import { formatJewishDateInHebrew, toJewishDate } from "jewish-date";
 import { DayCard } from "../../../types/day-card";
 import { DAYS_OF_WEEK, SETTER_STATE, MONTHS, StatusesColors, StatusesValues } from "../../../const";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSettingVisibility, toggleSelect } from "../../../store/calendar/calendar-actions";
+import { changeSettingVisibility, setActiveButton, toggleSelect } from "../../../store/calendar/calendar-actions";
 import cn from 'classnames';
 import '../calendar.sass';
 import { RootState } from "../../../store/RootState";
@@ -47,6 +47,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
     !hasSelected && dispatch(changeSettingVisibility({position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin}));
     hasSelected && !isSelected && dispatch(clearSelect()) && dispatch(changeSettingVisibility({position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin}));
     dispatch(toggleSelect({cardId: day.id}));
+    dispatch(setActiveButton({activeButton: day.status}));
   };
 
   const renderImage = (status: StatusesValues): string => {

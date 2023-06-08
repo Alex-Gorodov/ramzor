@@ -1,7 +1,7 @@
-import { SETTER_STATE } from "../../const";
+import { SETTER_STATE, StatusesValues } from "../../const";
 import { CalendarState } from "../../types/state";
 import { createReducer } from "@reduxjs/toolkit";
-import { changeSettingVisibility, clearSelect, setCardStatus, toggleSelect } from "./calendar-actions";
+import { changeSettingVisibility, clearSelect, setActiveButton, setCardStatus, toggleSelect } from "./calendar-actions";
 import { calendar } from "../../mocks/calendar";
 import { enableMapSet } from 'immer'
 
@@ -15,6 +15,7 @@ const initialState: CalendarState = {
   selectedCardIds: new Set([]),
   position: SETTER_STATE[0].position, //TODO remove
   margin: SETTER_STATE[0].margin, //TODO remove
+  activeButton: StatusesValues.Available,
 };
 
 export const calendarReducer = createReducer(initialState, (builder) => {
@@ -50,5 +51,10 @@ export const calendarReducer = createReducer(initialState, (builder) => {
       state.selectedCardIds = new Set([]);
       state.margin = SETTER_STATE[0].margin;
       state.position = SETTER_STATE[0].position;
+    })
+
+    .addCase(setActiveButton, (state, action) => {
+      const {activeButton} = action.payload;
+      state.activeButton = activeButton;
     })
 });
