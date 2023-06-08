@@ -58,25 +58,30 @@
     margin: 0
 
   &__btn
+    display: flex
+    justify-content: center
+    align-items: center
     max-width: 138px
+    height: 42px
     padding: 10px 47px
     margin-bottom: auto
     border: 1px solid $gray
     border-radius: 24px
-    background-color: transparent
+    background-color: $gray
     font-family: 'Roboto'
     font-style: normal
     font-weight: 600
     font-size: 16px
     line-height: 19px
     text-align: center
-    color: $gray
+    color: $white
     cursor: pointer
     transition: 0.3s
 
-    &:hover
-      background-color: $gray
-      color: $white
+    &:disabled
+      background-color: transparent
+      color: $gray
+      cursor: auto
 
   &__rights
     margin-top: auto
