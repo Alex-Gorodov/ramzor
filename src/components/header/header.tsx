@@ -27,9 +27,6 @@ export function Header(): JSX.Element {
   const userInfo = useSelector(
     (state: RootState) => state.auth.userInfo
   );
-
-  console.log(offset);
-  
   
   return (
     <header className="header">
