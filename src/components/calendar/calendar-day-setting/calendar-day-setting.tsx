@@ -39,7 +39,10 @@ export function CalendarDaySetting(): JSX.Element {
     if (calendar.filter((card) => card.status === StatusesValues.Unavailable).length < MAX_UNAVAILABLE) {
       dispatch(setCardStatus({ newStatus: StatusesValues.Unavailable}));
       dispatch(clearSelect());
-    } else window.alert('oops... to much closed days')
+    } else {
+      dispatch(clearSelect());
+      window.alert('עברת תקרת הימים החסומים!')
+    }
   };
   
   const handleAvailableButtonClick = () => {

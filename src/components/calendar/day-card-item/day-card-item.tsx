@@ -91,7 +91,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
   }
   
   return (
-      <div className={wrapperClassName} style={{background: getCardColor(day.status)}}>
+      <div className={wrapperClassName} style={{background: getCardColor(day.status)}} onClick={handleCardButtonClick}>
         <p className="calendar__day">{day.date.getDate() < 10 ? '0' + day.date.getDate() : day.date.getDate()}</p>
 
         <div className="calendar__inner-wrapper">
@@ -102,7 +102,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
 
         <span className="calendar__hebrew-date">{formatJewishDateInHebrew(toJewishDate(day.date))}</span>
 
-        <button className="calendar__btn" data-btn-type={ isСhangeable(day) ? day.status : day.status} onClick={handleCardButtonClick}>
+        <button className="calendar__btn" data-btn-type={ isСhangeable(day) ? day.status : day.status}>
           <img className="calendar__availability-icon" 
             src={renderImage(day.status)}
             alt={isСhangeable(day) ? day.status : ''}
