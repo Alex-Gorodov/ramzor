@@ -57,21 +57,22 @@ export function CalendarDaySetting(): JSX.Element {
 
   function onExitBtnClick() {
     setPopup('exit');
-    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
   }
 
   function onEnterBtnClick() {
     setPopup('enter');
-    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
   }
 
   function componentWillUnmount() {
     setPopup('');
-    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
   }
 
   function onCancel() {
     componentWillUnmount();
+
     switch (popup) {
       case 'exit':
         dispatch(setCardStatus({newStatus: day.status, hourTo: undefined, hourFrom: day.hourFrom}));
