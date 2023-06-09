@@ -1,12 +1,14 @@
 @import '../../style'
 
 .header
-  position: fixed
+  position: sticky
   top: 0
   width: 100%
-  background-color: $white
   z-index: 10
-  filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25))
+
+  &__top
+    position: relative
+    z-index: 7
 
   &__title-wrapper
     background-color: $gray
@@ -30,7 +32,15 @@
       background-position: center
 
   &__content-wrapper
+    position: relative
     padding: 5px 13px
+    background-color: $white
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25)
+    z-index: 5
+    transition: 0.5s
+
+    &--collapsed
+      transform: translateY(-120px)
 
   &__subtitle
     margin: 0
@@ -38,6 +48,7 @@
     padding-right: 15px
     font-weight: 700
     font-size: 20px
+    background-color: $white
     &::after
       display: block
       margin-top: 5px
