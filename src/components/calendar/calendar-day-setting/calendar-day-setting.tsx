@@ -70,6 +70,27 @@ export function CalendarDaySetting(): JSX.Element {
     document.body.style.overflow = "";
   }
 
+  function onCancel() {
+    componentWillUnmount();
+    switch (popup) {
+      case 'exit':
+        dispatch(setCardStatus({newStatus: day.status, hourTo: undefined, hourFrom: day.hourFrom}));
+        if (!day.hourFrom && !day.hourTo) {
+          dispatch(setCardStatus({newStatus: StatusesValues.Available}));
+          dispatch(setActiveButton({activeButton: StatusesValues.Available}))
+        }
+        break;
+    
+      case 'enter':
+        dispatch(setCardStatus({newStatus: day.status, hourFrom: undefined, hourTo: day.hourTo}));
+        if (!day.hourFrom && !day.hourTo) {
+          dispatch(setCardStatus({newStatus: StatusesValues.Available}));
+          dispatch(setActiveButton({activeButton: StatusesValues.Available}))
+        }
+        break;
+    }
+  }
+
   function setTimeTo() {
     componentWillUnmount();
     dispatch(clearSelect());
@@ -103,8 +124,8 @@ export function CalendarDaySetting(): JSX.Element {
         <span className="calendar__set-time__text">שעת הגעה</span>
         <button className="calendar__set-time__trigger" data-time-btn="daily-enter" onClick={onEnterBtnClick}>{day?.hourFrom ? day.hourFrom : '23:59'}</button>
       </div>
-      {popup === 'exit' && <Popup buttonType={"daily-exit"} onCancel={componentWillUnmount} onSubmit={setTimeTo}/>}
-      {popup === 'enter' && <Popup buttonType={"daily-enter"} onCancel={componentWillUnmount} onSubmit={setTimeFrom}/>}
+      {popup === 'exit' && <Popup buttonType={"daily-exit"} onCancel={onCancel} onSubmit={setTimeTo}/>}
+      {popup === 'enter' && <Popup buttonType={"daily-enter"} onCancel={onCancel} onSubmit={setTimeFrom}/>}
     </div>
   );
 }
