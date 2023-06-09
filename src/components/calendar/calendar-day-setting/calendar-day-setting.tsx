@@ -101,7 +101,7 @@ export function CalendarDaySetting(): JSX.Element {
     componentWillUnmount();
     dispatch(clearSelect());
   }
-
+  
   return (
     <div className="calendar__day-setting" data-show={newPosition} style={{padding: popup && '0'}}>
       <span className="calendar__setting-toggler" aria-hidden="true" onClick={() => handleCloseSetting()}></span>
@@ -125,8 +125,8 @@ export function CalendarDaySetting(): JSX.Element {
         <span className="calendar__set-time__text">שעת הגעה</span>
         <button className="calendar__set-time__trigger" data-time-btn="daily-enter" onClick={onEnterBtnClick}>{day?.hourFrom ? day.hourFrom : '23:59'}</button>
       </div>
-      {popup === 'exit' && <Popup buttonType={"daily-exit"} onCancel={onCancel} onSubmit={setTimeTo}/>}
-      {popup === 'enter' && <Popup buttonType={"daily-enter"} onCancel={onCancel} onSubmit={setTimeFrom}/>}
+      {popup === 'exit' && <Popup buttonType={"daily-exit"} onCancel={onCancel} onSubmit={setTimeTo} />}
+      {popup === 'enter' && <Popup buttonType={"daily-enter"} onCancel={onCancel} onSubmit={setTimeFrom} />}
     </div>
   );
 }
