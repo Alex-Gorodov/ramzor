@@ -103,7 +103,7 @@ export function CalendarDaySetting(): JSX.Element {
   }
 
   return (
-    <div className="calendar__day-setting" data-show={newPosition}>
+    <div className="calendar__day-setting" data-show={newPosition} style={{padding: popup && '0'}}>
       <span className="calendar__setting-toggler" aria-hidden="true" onClick={() => handleCloseSetting()}></span>
       <div className="calendar__buttons-wrapper">
         <button
