@@ -24,6 +24,9 @@
     color: $white
     cursor: pointer
 
+    &:has(.calendar__btn[data-btn-type="locked"])
+      pointer-events: none
+
     &--inactive
       background: #d9d9d9
       color: #c0c0c0
@@ -81,9 +84,6 @@
     border-radius: 50%
     grid-column: 1 / -1
     cursor: pointer
-
-    &[data-btn-type="locked"]
-      pointer-events: none
 
     &--disabled
       pointer-events: none
