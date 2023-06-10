@@ -42,7 +42,6 @@ export function CalendarDaySetting(): JSX.Element {
     dispatch(setCardStatus({ newStatus: StatusesValues.Available }));
     dispatch(changeSettingVisibility({position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin }));
     dispatch(clearSelect());
-
   };
 
   const handleCloseSetting = () => {

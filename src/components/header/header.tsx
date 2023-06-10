@@ -19,7 +19,7 @@ export function Header(): JSX.Element {
   const [offset, setOffset] = useState(0);
 
   const headerContentClassName = cn('header__content-wrapper', {
-    'header__content-wrapper--collapsed' : offset > 100,
+    'header__content-wrapper--collapsed' : offset > 70,
   })
 
   useEffect(() => {

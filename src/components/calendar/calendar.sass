@@ -3,7 +3,7 @@
 .calendar
   @include reset-list
   display: grid
-  padding-top: 20px
+  padding-top: 7px
   margin-bottom: 20px
   grid-template-columns: repeat(3, 110px)
   gap: 7px
@@ -25,7 +25,8 @@
     cursor: pointer
     transition: 0.3s
 
-    &:has(.calendar__btn[data-btn-type="locked"])
+    &:has(.calendar__btn[data-btn-type="locked"]),
+    &:has(.calendar__btn[data-btn-type="disabled"])
       pointer-events: none
 
     &--inactive
