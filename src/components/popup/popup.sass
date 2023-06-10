@@ -23,12 +23,15 @@
     max-height: 40px
     margin: 40px auto
     justify-content: center
-    gap: 20px
 
   &__swiper-wrapper
     position: relative
     display: flex
     align-items: center
+    &:first-of-type
+      margin-left: -15px
+    &:last-of-type
+      margin-right: -15px
 
     &::before,
     &::after
@@ -93,3 +96,18 @@
     display: flex
     justify-content: center
     align-items: center
+
+.slide__gray
+  &--prev
+    background: linear-gradient(180deg, rgba(153, 153, 153, 0) 0%, #999999 47.4%)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    background-clip: text
+    text-fill-color: transparent
+
+  &--next
+    background: linear-gradient(180deg, #999999 56.25%, rgba(153, 153, 153, 0) 100%)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    background-clip: text
+    text-fill-color: transparents

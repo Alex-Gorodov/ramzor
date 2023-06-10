@@ -12,7 +12,6 @@ type PopupProps = {
   onSubmit?: () => void;
 }
 
-
 export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element {
   const dispatch = useDispatch();
   const selected = useSelector((state: RootState) => 
@@ -55,9 +54,14 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
               direction="vertical"
               className="popup__swiper popup__swiper--minutes"
               spaceBetween={15}
-              slidesPerView={1}
+              slidesPerView={3}
+              slidesPerGroup={1}
+              centerInsufficientSlides
+              centeredSlides
+              touchRatio={3}
+              slideNextClass='slide__gray--next'
+              slidePrevClass='slide__gray--prev'
               touchAngle={90}
-              edgeSwipeThreshold={150}
               onSlideChange={(swiper) => minute = swiper.activeIndex}
               initialSlide={
                 {
@@ -81,9 +85,14 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
               direction="vertical"
               className="popup__swiper popup__swiper--hours"
               spaceBetween={15}
-              slidesPerView={1}
               touchAngle={90}
-              edgeSwipeThreshold={150}
+              slidesPerView={3}
+              slidesPerGroup={1}
+              centerInsufficientSlides
+              centeredSlides
+              touchRatio={3}
+              slideNextClass='slide__gray--next'
+              slidePrevClass='slide__gray--prev'
               onSlideChange={(swiper) => hour = swiper.activeIndex}
               initialSlide={
                 {
