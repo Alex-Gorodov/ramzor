@@ -18,7 +18,7 @@ export function CalendarList(): JSX.Element {
       <ul className="calendar">
         {calendar.map((day) => {
           return (
-            <li key={day.id} className='calendar__item'>
+            <li key={day.id} className='calendar__item' role='button'>
               <DayCardItem 
                 day={day}
                 onClick={() => handleCardClick(day.id)}
