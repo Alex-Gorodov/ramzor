@@ -58,7 +58,7 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
               slidesPerGroup={1}
               centerInsufficientSlides
               centeredSlides
-              touchRatio={3}
+              touchRatio={2}
               slideNextClass='slide__gray--next'
               slidePrevClass='slide__gray--prev'
               touchAngle={90}
@@ -90,7 +90,7 @@ export function Popup({buttonType, onCancel, onSubmit}: PopupProps): JSX.Element
               slidesPerGroup={1}
               centerInsufficientSlides
               centeredSlides
-              touchRatio={3}
+              touchRatio={1}
               slideNextClass='slide__gray--next'
               slidePrevClass='slide__gray--prev'
               onSlideChange={(swiper) => hour = swiper.activeIndex}
