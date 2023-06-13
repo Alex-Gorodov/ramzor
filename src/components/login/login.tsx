@@ -24,9 +24,6 @@ export function Login() {
       : setInputFilled(false)
   }, [loginRef]);
 
-  // const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-  //   evt.preventDefault();
-
   setTimeout(() => {
     const value = loginRef.current?.value;
 
@@ -37,7 +34,6 @@ export function Login() {
       }
     }
   }, 500);
-  // };
 
   return (
     <div className="login">
@@ -47,7 +43,7 @@ export function Login() {
       <p className="login__description">ברוך הבא למערכת ניהול הפלוגה</p>
       <form className="login__form" action="#">
         <label className="login__field" htmlFor="private-number">
-          <input className="login__input" ref={loginRef} onChange={handleChange} type="number" id="private-number" required placeholder='הזן מספר אישי'/>
+          <input className="login__input" ref={loginRef} onChange={handleChange} type="number" id="private-number" autoFocus required placeholder='הזן מספר אישי'/>
         </label>
  
         <button className="login__btn" type="submit" disabled={!isInputFilled}>
