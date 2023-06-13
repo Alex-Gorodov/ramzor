@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ramzor/static/css/main.a843692e.css",
-    "main.js": "/ramzor/static/js/main.c1665072.js",
+    "main.css": "/ramzor/static/css/main.62a9cc85.css",
+    "main.js": "/ramzor/static/js/main.377fed19.js",
     "index.html": "/ramzor/index.html",
     "static/media/attention.svg": "/ramzor/static/media/attention.d28f7abae84603c00fae.svg",
     "static/media/lock.svg": "/ramzor/static/media/lock.84a36334c4f5c80cf7182301394a9b05.svg",
@@ -13,11 +13,11 @@
     "static/media/info.svg": "/ramzor/static/media/info.6ec0ffcff2fc097df3ca.svg",
     "static/media/clock.svg": "/ramzor/static/media/clock.e4681dd94d04742b4212421a574984e4.svg",
     "static/media/triangle.svg": "/ramzor/static/media/triangle.2468a6bfae327c639a9b.svg",
-    "main.a843692e.css.map": "/ramzor/static/css/main.a843692e.css.map",
-    "main.c1665072.js.map": "/ramzor/static/js/main.c1665072.js.map"
+    "main.62a9cc85.css.map": "/ramzor/static/css/main.62a9cc85.css.map",
+    "main.377fed19.js.map": "/ramzor/static/js/main.377fed19.js.map"
   },
   "entrypoints": [
-    "static/css/main.a843692e.css",
-    "static/js/main.c1665072.js"
+    "static/css/main.62a9cc85.css",
+    "static/js/main.377fed19.js"
   ]
 }
