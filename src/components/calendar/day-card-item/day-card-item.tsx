@@ -46,6 +46,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
     hasSelected && dispatch(changeSettingVisibility({position: SETTER_STATE[0].position, margin: SETTER_STATE[0].margin}));
     !hasSelected && dispatch(changeSettingVisibility({position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin}));
     hasSelected && !isSelected && dispatch(clearSelect()) && dispatch(changeSettingVisibility({position: SETTER_STATE[1].position, margin: SETTER_STATE[1].margin}));
+    !hasSelected && (day.hourFrom || day.hourTo) && dispatch(changeSettingVisibility({position: SETTER_STATE[2].position, margin: SETTER_STATE[2].margin}));
     dispatch(toggleSelect({cardId: day.id}));
     dispatch(setActiveButton({activeButton: day.status}));
   };
@@ -75,7 +76,7 @@ export function DayCardItem({day}: DayCardProps): JSX.Element {
         return StatusesColors.Available;
 
       case StatusesValues.Partly:
-        return StatusesColors.Partly;
+        return StatusesColors.Available;
 
       case StatusesValues.Unavailable:
         return StatusesColors.Unavailable;
