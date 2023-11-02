@@ -1,14 +1,11 @@
 export type User = {
+  id: number;
   firstName: string;
   secondName: string;
-  id: number;
+  token: string;
+  isAdmin: boolean;
+  employment: boolean[];
 }
-
-export type UserAuthData = {
-  id: number;
-  firstName: string;
-  secondName: string;
-};
 
 export type AuthData = {
   id: number;

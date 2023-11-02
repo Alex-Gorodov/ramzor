@@ -1,7 +1,7 @@
 import { StatusesValues } from "../const";
 import { store } from "../store";
 import { DayCard } from "./day-card";
-import { UserAuthData } from "./user";
+import { User } from "./user";
 
 export type State = ReturnType<typeof store.getState>;
 
@@ -16,5 +16,9 @@ export type CalendarState = {
 };
 
 export type AuthState = {
-  userInfo: UserAuthData | undefined;
+  userInfo: User | undefined;
 };
+
+export type AdminTableState = {
+  date: Date;
+}

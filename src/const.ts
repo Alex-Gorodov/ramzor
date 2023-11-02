@@ -4,6 +4,11 @@ export const MAX_UNAVAILABLE = 4;
 
 export enum AppRoute {
   Root = '/desk',
+  Login = 'ramzor/',
+  Admin = '/admin'
+}
+
+export enum APIRoute {
   Login = 'ramzor/'
 }
 

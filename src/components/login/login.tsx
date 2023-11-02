@@ -6,6 +6,7 @@ import { AppRoute } from '../../const';
 import { setUserInformation, redirectToRoute } from '../../store/auth/auth-actions';
 import { userIds, users } from '../../mocks/users';
 import { RotatingLines } from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 
 export function Login() {
   const dispatch = useDispatch();
@@ -29,8 +30,12 @@ export function Login() {
 
     if (loginRef.current !== null) {
       if (userIds.includes(Number(loginRef.current.value))) {
-        dispatch(setUserInformation({userInformation: users.find((id) => value === id.id.toString())}));
-        dispatch(redirectToRoute(AppRoute.Root));
+        // if user is admin - redirecting to admin page, else to regular user page
+        dispatch(setUserInformation({userInformation: users.find((user) => value === user.id.toString())})).payload.userInformation?.isAdmin
+          ?
+          dispatch(redirectToRoute(AppRoute.Admin))
+          :
+          dispatch(redirectToRoute(AppRoute.Root));
       }
     }
   }, 500);
@@ -41,6 +46,7 @@ export function Login() {
         לוגו גדוד
       </div>
       <p className="login__description">ברוך הבא למערכת ניהול הפלוגה</p>
+
       <form className="login__form" action="#">
         <label className="login__field" htmlFor="private-number">
           <input className="login__input" ref={loginRef} onChange={handleChange} type="number" id="private-number" required placeholder='הזן מספר אישי'/>
@@ -60,7 +66,9 @@ export function Login() {
           }
         </button>
       </form>
+
       <span className="login__rights">Version 1.0</span>
+      <Link className='login__btn admin-btn' to={AppRoute.Admin}>Admin desk</Link>
     </div>
   );
 }

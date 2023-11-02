@@ -7,6 +7,7 @@ import { HistoryRouter } from "../history-route/history-route";
 import { Provider } from "react-redux";
 import { store } from "../../store";
 import { LoginPage } from "../../pages/login-page/login-page";
+import { AdminPage } from "../../pages/admin-page/admin-page";
 
 export const App: FC = () => {
   return (
@@ -15,6 +16,7 @@ export const App: FC = () => {
         <Routes>
           <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route path={AppRoute.Root} element={<HomePage />} />
+          <Route path={AppRoute.Admin} element={<AdminPage />}/>
         </Routes>
       </Provider>
     </HistoryRouter>

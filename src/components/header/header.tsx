@@ -6,6 +6,7 @@ import { RootState } from '../../store/RootState';
 import { DISABLED_DAYS } from '../../mocks/calendar';
 import { MAX_UNAVAILABLE, StatusesValues } from '../../const';
 import { useEffect, useState } from 'react';
+import { getToken } from '../../services/token';
 
 export const formatDate = (date: Date, format: string) =>
   dayjs(date).format(format);
@@ -28,10 +29,6 @@ export function Header(): JSX.Element {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const userInfo = useSelector(
-    (state: RootState) => state.auth.userInfo
-  );
   
   return (
     <header className="header">
@@ -39,7 +36,7 @@ export function Header(): JSX.Element {
         <div className="header__title-wrapper">
           <h1 className="header__title">שעון לחימה</h1>
         </div>
-        <p className="header__subtitle">שלום, {userInfo ? userInfo.firstName : ''}</p>
+        <p className="header__subtitle">שלום, {getToken()}</p>
       </div>
       <div className={headerContentClassName}>
         <div className="header__description-wrapper">
