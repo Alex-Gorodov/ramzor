@@ -1,6 +1,7 @@
 export const MINUTES = Array.from({ length: 60 }, (_, index) => index);
 export const HOURS = Array.from({ length: 24 }, (_, index) => index);
 export const MAX_UNAVAILABLE = 4;
+export const SECONDS_PER_DAY = 86400;
 
 export enum AppRoute {
   Root = '/desk',
@@ -26,7 +27,7 @@ export const MONTHS = [
   'נובמבר',
   'דצמבר'
   ];
-
+  
 export const DAYS_OF_WEEK = [
     'יום א’',
     'יום ב’',
