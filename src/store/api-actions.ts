@@ -1,17 +1,42 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { AxiosInstance } from "axios";
+import { AppDispatch, State } from "../types/state";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { DayCard } from "../types/day-card";
+import { setCardStatus } from "./calendar/calendar-actions";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCTt7X3b1cMEvrjnLb6PZ9737SQ_xNAhzk",
-  authDomain: "ramzor-9213.firebaseapp.com",
-  projectId: "ramzor-9213",
-  storageBucket: "ramzor-9213.appspot.com",
-  messagingSenderId: "589159226847",
-  appId: "1:589159226847:web:eee0b63701ff4bbc6db86a"
+type ThunkOptions = {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const setDayAction = createAsyncThunk <void, DayCard, ThunkOptions> (
+  'calendar/day', async (_arg, {dispatch, extra: api}) => {
+    const { data } = await api.put<DayCard>('api/calendar/:id');
+    dispatch(setCardStatus({
+      ...data,
+      newStatus: data.status,
+      hourFrom: data.hourFrom,
+      hourTo: data.hourTo,
+    }));
+    console.log(data);
+  }
+)
+
+// export const loginAction = createAsyncThunk<
+// void,
+// AuthData,
+// ThunkOptions>
+// (
+//   'user/login',
+//   async ({ id: token }, { dispatch, extra: api }) => {
+//     const { data } = await api.post<UserAuthData>(APIRoute.Login, {
+//       token
+//     });
+//     saveToken(data.token);
+//     dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.Auth}));
+//     dispatch(redirectToRoute(AppRoute.Root));
+//     dispatch(getUserInformation({userInformation: data}));
+//     dispatch(setUserInformation({userInformation: data}));
+//   }
+// );
