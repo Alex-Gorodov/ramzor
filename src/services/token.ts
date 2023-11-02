@@ -1,4 +1,4 @@
-const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
+const AUTH_TOKEN_KEY_NAME = 'ramzor-login';
 
 export type Token = string;
 

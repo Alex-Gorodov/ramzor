@@ -36,9 +36,9 @@ const getData = (cardsCount: number): DayCard[] => {
     return {
       ...card,
       id: index,
-      date: new Date(2023, 5, index + 5 - DISABLED_DAYS)
+      date: new Date(2023, 10, index - DISABLED_DAYS)
     }
   })
 }
 
-export const calendar: DayCard[] = getData(30);
+export const calendar: DayCard[] = getData(31);

@@ -4,9 +4,11 @@ import { MAX_UNAVAILABLE, SETTER_STATE, StatusesValues } from "../../../const";
 import { RootState } from "../../../store/RootState";
 import { useState } from "react";
 import { Popup } from "../../popup/popup";
+import { setDayAction } from "../../../store/api-actions";
 
 export function CalendarDaySetting(): JSX.Element {
   const dispatch = useDispatch();
+  
   const newPosition = useSelector((state: RootState) => state.calendar.position);
   
   const selected = useSelector((state: RootState) => 
@@ -79,6 +81,7 @@ export function CalendarDaySetting(): JSX.Element {
           dispatch(setCardStatus({newStatus: StatusesValues.Available}));
           dispatch(setActiveButton({activeButton: StatusesValues.Available}))
         }
+        setDayAction(day);
         break;
     
       case 'enter':
@@ -87,6 +90,7 @@ export function CalendarDaySetting(): JSX.Element {
           dispatch(setCardStatus({newStatus: StatusesValues.Available}));
           dispatch(setActiveButton({activeButton: StatusesValues.Available}))
         }
+        setDayAction(day);
         break;
     }
   }

@@ -1,0 +1,50 @@
+@import '../../style'
+
+.user-card
+  min-width: 100px
+  padding: 0 10px
+  display: flex
+  align-items: center
+  gap: 10px
+  min-height: 34px
+  max-height: 34px
+  background-color: $user-unavailable-color
+  cursor: no-drop
+  user-select: none
+  &[draggable = 'true']
+    padding-right: 6px
+    cursor: grab
+    & button
+      transform: translateX(-4px)
+  &[data-available = 'true']
+    background-color: $user-available-color
+    cursor: grab
+    &:active
+      cursor: grabbing
+
+  border: 1px solid $dark-gray
+  border-radius: 8px
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px, rgba(0, 0, 0, 0.22) 0px 10px 18px
+
+  &__employment
+    margin: 0
+
+  &__wrapper
+    display: flex
+    flex-direction: column
+
+  &__secondname
+    margin: 0
+    padding: 0
+    font-size: 14px
+
+  &__firstname
+    margin: 0
+    padding: 0
+    font-size: 10px
+
+  &__block-toggle
+    padding: 0
+    border: none
+    background-color: transparent
+    cursor: pointer
