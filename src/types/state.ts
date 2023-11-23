@@ -1,6 +1,7 @@
 import { StatusesValues } from "../const";
-import { store } from "../store";
 import { DayCard } from "./day-card";
+import { Mission } from "./mission";
+import { store } from "../store";
 import { User } from "./user";
 
 export type State = ReturnType<typeof store.getState>;
@@ -20,5 +21,8 @@ export type AuthState = {
 };
 
 export type AdminTableState = {
+  isFormOpened: boolean;
+  missions: Mission[];
+  users: User[];
   date: Date;
 }

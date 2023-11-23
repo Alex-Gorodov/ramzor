@@ -68,7 +68,7 @@ export function Login() {
       </form>
 
       <span className="login__rights">Version 1.0</span>
-      <Link className='login__btn admin-btn' to={AppRoute.Admin}>Admin desk</Link>
+      <Link className='login__btn admin-btn' to={AppRoute.Admin}>Admin&nbsp;desk desktop&nbsp;only</Link>
     </div>
   );
 }

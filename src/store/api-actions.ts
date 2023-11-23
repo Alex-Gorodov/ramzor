@@ -19,7 +19,6 @@ export const setDayAction = createAsyncThunk <void, DayCard, ThunkOptions> (
       hourFrom: data.hourFrom,
       hourTo: data.hourTo,
     }));
-    console.log(data);
   }
 )
 

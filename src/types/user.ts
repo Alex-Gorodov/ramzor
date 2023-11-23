@@ -3,8 +3,10 @@ export type User = {
   firstName: string;
   secondName: string;
   token: string;
-  isAdmin: boolean;
   employment: boolean[];
+  isAdmin?: boolean;
+  isCommander?: boolean;
+  isOnMission?: boolean;
 }
 
 export type AuthData = {

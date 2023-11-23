@@ -10,31 +10,105 @@ th:first-child
   height: 60px
   border: none
 
+th:not(:first-child)
+  min-width: 260px
+  height: 60px
+
 .schedule
+  position: relative
   display: grid
   grid-template-columns: 70px auto 1fr
-  grid-template-rows: 2fr 1fr
+  grid-template-rows: auto 2fr 1fr
   align-items: center
   justify-items: center
   font-family: $admin-font
+  overflow: hidden
+
+  &-section
+    position: relative
+
+  &__title
+    position: fixed
+    top: 0
+    right: 0
+    display: flex
+    align-items: center
+    gap: 20px
+    width: 100%
+    margin: 0
+    padding: 15px 0
+    padding-right: 35px
+    grid-column: 1/-1
+    grid-row: 1/2
+    font-size: 25px
+    background-color: $user-available-bg
+    z-index: 10
+    &::before
+      display: block
+      width: 60px
+      height: 60px
+      border: 1px solid $admin-date-gray
+      border-radius: 50%
+      background-image: url("../../img/logo.png")
+      background-size: 48px 48px
+      background-repeat: no-repeat
+      background-position: center
+      content: ''
+
+  &__mission-btn
+    position: absolute
+    transform: translateY(-50%)
+    border: none
+    background-color: transparent
+    background-position: center
+    background-repeat: no-repeat
+    cursor: pointer
+    &--add
+      right: calc(100% + 12px)
+      top: 30px
+      background-image: url("../../img/icons/add-mission.svg")
+      background-size: 14px 14px
+    &--remove
+      top: 50%
+      left: 12px
+      display: block
+      width: 10px
+      height: 10px
+      background-image: url("../../img/icons/close-cross.svg")
+      background-size: 10px 10px
+      background-repeat: no-repeat
+      background-position: center
+    &:focus-visible
+      outline: none
+
+  &__head
+    position: fixed
+    top: 90px
+    right: 150px
+    z-index: 10
+
   &__column-name
     margin: 0
     font-weight: 400
     font-size: 18px
-    &__wrapper
-      background: linear-gradient(to bottom, $white 0 10px, $admin-date-gray 10px calc(100% - 10px), $white calc(100% - 10px) 100%)
-      padding: 10px 0
+    padding: 0 40px
+    &__container
+      background: linear-gradient(to bottom, #ffffff 0 10px, #d9d9d9 10px 50px, #ffffff 50px 60px)
+      padding: 0
       border-bottom-color: $gray
       border-inline: 1px solid $light-gray
+    &__wrapper
+      position: relative
+      display: flex
+      justify-content: center
 
   &__table
-    position: relative
     height: 100vh
     padding: 0 20px
-    margin-left: auto
+    margin-top: 150px
     border-collapse: collapse
     grid-column: 2/3
-    grid-row: 1/-1
+    grid-row: 2/-1
 
   &-date__timer
     position: absolute
@@ -43,6 +117,7 @@ th:first-child
     margin: 0
     background-color: #ff0000
     left: 0%
+    z-index: 5
     &::before
       position: absolute
       top: calc(-100% - 3px)
@@ -56,15 +131,17 @@ th:first-child
 
   &-date__wrapper
     display: flex
-    height: 100%
+    height: calc(100% - 60px)
     width: 100%
     flex-direction: column
     padding: 0
     margin: 0
+    margin-top: 240px
+    border: 1px solid $black
     justify-content: center
     align-items: center
     user-select: none
-    grid-row: 1 / -1
+    grid-row: 2 / -1
     background-color: $admin-date-gray
 
   &-date
@@ -90,6 +167,7 @@ th:first-child
 
   &-hours
     &[data-hour='0'] &__row::before
+      top: 0
       background-color: $gray
 
     &[data-hour='0'] span
@@ -97,22 +175,24 @@ th:first-child
       color: $gray
       top: -30%
     &__cell
-      min-width: 140px
+      min-width: 260px
+      max-width: 280px
+      height: 43px
+
       &:hover
-        background-color: $light-gray
+        background-color: $user-unavailable-bg
     &__row
       position: relative
       min-width: 80px
-      max-height: 43px
       padding: 4px 10px
       color: $light-gray
       &::before
         position: absolute
         display: block
         left: 0
-        top: -0.7%
+        top: -1%
         background-color: $admin-date-gray
-        height: 0.5px
+        height: 1px
         width: 10px
         z-index: -1
         content: ''
@@ -123,39 +203,135 @@ th:first-child
         top: -25%
         left: 15%
 
-
   &-days
     padding: 0 10px
     width: 65vw
 
-  &-users__wrapper
-    display: flex
-    flex-direction: column
-    gap: 40px
+  &-users
+    &__wrapper
+      position: fixed
+      top: 90px
+      left: 0
+      display: flex
+      transition: 0.5s
+      z-index: 30
+    &__content
+      padding: 70px 46px
+      padding-top: 20px
+      background-color: $admin-date-gray
+      display: flex
+      flex-direction: column
+      z-index: 10
+    &__description
+      position: relative
+      display: flex
+      margin-bottom: 22px
+      justify-content: space-between
+      align-items: center
+      &::after
+        position: absolute
+        bottom: 0
+        left: 0
+        display: block
+        width: 100%
+        height: 2px
+        background-color: $white
+        content: ''
+
+    &__title
+      font-size: 18px
+      font-weight: 400
+    &__add-btn
+      display: flex
+      justify-content: center
+      align-items: center
+      gap: 4px
+      color: $white
+      background-color: transparent
+      font-size: 18px
+      border: none
+      transition: 0.3s
+      cursor: pointer
+      &:hover
+        opacity: 0.6
+      &::before
+        display: block
+        width: 14px
+        height: 14px
+        background-image: url("../../img/icons/plus-icon.svg")
+        background-size: initial
+        background-repeat: no-repeat
+        background-position: center
+        content: ''
+
+    &__block
+      display: flex
+      background-color: $white
+      border-radius: 6px
+      scrollbar-width: thin
 
   &__users
     @include reset-list
     display: flex
+    flex-direction: column
     width: 300px
+    min-height: 580px
     overflow: scroll
-    box-shadow: inset 0px 0px 10px 0px
     padding: 20px
     grid-row: 1 / 2
     grid-column: 3 / -1
     gap: 20px
-    background-color: $light-gray
-    border: 1px solid $black
-    scrollbar-width: thin
 
-  &__buttons-wrapper
-    display: flex
-    gap: 40px
-    max-width: 120px
-    justify-content: space-between
-    grid-column: 3 / -1
-    grid-row: 2 / 3
+  &__btn-wrapper
+    z-index: 5
 
-  &__day-btn
-    height: 40px
-    width: 40px
+  &__toggle-btn
+    position: absolute
+    right: 0
+    top: 50%
+    transform: translate(calc(100% - 6px), -50%)
+    border: none
+    background-color: transparent
     cursor: pointer
+    z-index: 10
+    &::before
+      position: absolute
+      display: block
+      width: 20px
+      height: 120px
+      background-color: #ca2f2f
+      z-index: 5
+      content: ""
+      left: -15px
+      box-shadow: 3px 0 10px 0px rgba(0, 0, 0, 0.2)
+    &::after
+      position: absolute
+      top: 50%
+      left: 50%
+      display: block
+      width: 12px
+      height: 20px
+      transform: translate(-50%, -50%)
+      transition: 0.3s
+      background-image: url("../../img/icons/user-list-triangle.svg")
+      background-position: center
+      background-repeat: no-repeat
+      background-size: initial
+      content: ''
+    &[data-opened='true']::after
+      transform: translate(-50%, -50%) rotate(180deg)
+    &:focus-visible
+      outline: none
+
+  // &__buttons-wrapper
+  //   display: flex
+  //   gap: 40px
+  //   max-width: 120px
+  //   justify-content: space-between
+  //   grid-column: 3 / -1
+  //   grid-row: 2 / 3
+
+  // &__day-btn
+  //   height: 40px
+  //   width: 40px
+  //   cursor: pointer

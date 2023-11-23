@@ -13,6 +13,11 @@ export enum APIRoute {
   Login = 'ramzor/'
 }
 
+export const UserListPosition = [
+  'translateX(-100%)',
+  'translateX(0)'
+]
+
 export const MONTHS = [
   'ינואר',
   'פברואר',

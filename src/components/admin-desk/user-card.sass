@@ -1,28 +1,30 @@
 @import '../../style'
 
 .user-card
+  position: relative
   min-width: 140px
   padding: 0 10px
+  padding-right: 36px
   display: flex
   align-items: center
   gap: 10px
-  min-height: 34px
-  max-height: 34px
-  background-color: $user-unavailable-color
+  min-height: 30px
+  max-height: 30px
+  background-color: $user-unavailable-bg
   cursor: no-drop
   user-select: none
+  border: 1px solid $user-unavailable-bg
   &[draggable = 'true']
     padding-left: 6px
     cursor: grab
   &[data-available = 'true']
-    background-color: $user-available-color
+    background-color: $user-available-bg
     cursor: grab
     &:active
       cursor: grabbing
 
-  border: 1px solid $dark-gray
   border-radius: 8px
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px, rgba(0, 0, 0, 0.22) 0px 10px 18px
+  // box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px, rgba(0, 0, 0, 0.22) 0px 10px 18px
 
   &__employment
     margin: 0
@@ -30,6 +32,7 @@
   &__wrapper
     display: flex
     flex-direction: column
+    margin-left: auto
 
   &__secondname
     margin: 0
@@ -46,3 +49,6 @@
     border: none
     background-color: transparent
     cursor: pointer
+
+  &--empty
+    border: 1px dashed $light-gray
