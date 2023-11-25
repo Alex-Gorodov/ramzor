@@ -241,31 +241,45 @@ th:not(:first-child)
     &__title
       font-size: 18px
       font-weight: 400
-    &__add-btn
+    &__btn-wrapper
       display: flex
+      gap: 16px
+    &__btn
+      display: flex
+      padding: 4px 7px
       justify-content: center
       align-items: center
       gap: 4px
       color: $white
-      background-color: transparent
       font-size: 18px
       border: none
+      border-radius: 6px
       transition: 0.3s
       cursor: pointer
       &:hover
         opacity: 0.6
       &::before
         display: block
-        width: 14px
-        height: 14px
-        background-image: url("../../img/icons/plus-icon.svg")
+        width: 22px
+        height: 16px
         background-size: initial
         background-repeat: no-repeat
         background-position: center
         content: ''
+      &--add
+        background-color: $add-soldier-blue
+        &::before
+          background-image: url("../../img/icons/add-soldier.svg")
+          
+      &--remove
+        background-color: $color-card-absent
+        &::before
+          background-image: url("../../img/icons/remove-soldier.svg")
 
     &__block
       display: flex
+      min-width: 360px
+      justify-content: center
       background-color: $white
       border-radius: 6px
       scrollbar-width: thin
@@ -322,16 +336,3 @@ th:not(:first-child)
       transform: translate(-50%, -50%) rotate(180deg)
     &:focus-visible
       outline: none
-
-  // &__buttons-wrapper
-  //   display: flex
-  //   gap: 40px
-  //   max-width: 120px
-  //   justify-content: space-between
-  //   grid-column: 3 / -1
-  //   grid-row: 2 / 3
-
-  // &__day-btn
-  //   height: 40px
-  //   width: 40px
-  //   cursor: pointer

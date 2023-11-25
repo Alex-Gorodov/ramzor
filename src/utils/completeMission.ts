@@ -15,10 +15,10 @@ export function completeMission(soldiers: number, commanders: number, users: Use
 
   const commandersArr = users.filter((user) => user.employment.filter((active) => active).length > user.employment.filter((active) => !active).length && user.isCommander);
 
-  const missionGroup = [...availableSoldiers];
+  const missionGroup = [...availableSoldiers].slice(1);
   
   if (commanders) {
-    for (let i = 0; i <= commanders; i++) {
+    for (let i = 0; i <= commanders - 1; i++) {
       missionGroup.unshift(commandersArr[i]);
     }
   } else {

@@ -59,7 +59,7 @@ export function ScheduleTable(): JSX.Element {
         {
           newDate.getDay() === new Date().getDay()
           ?
-          <p className="schedule-date__timer" style={{ top: `${dayTimePercentage + 3.85}%`}}></p>
+          <p className="schedule-date__timer" style={{ top: `calc(${dayTimePercentage}% + ${0.5 * dayTimePercentage}px)`}}></p>
           :
           ''
         }

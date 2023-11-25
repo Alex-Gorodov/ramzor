@@ -20,24 +20,17 @@ export function UserCard({ user }: UserProps): JSX.Element {
         <h3 className="user-card__secondname">{user?.secondName}</h3>
         <p className="user-card__firstname">{user?.firstName}</p>
       </div>
-      {user?.isOnMission && (availableUserHours - unAvailableUserHours) <= 0 ? <Home /> : <Tent />}
-      <p className="user-card__employment">
-        {user?.isOnMission && isUserAvailable ? `${availableUserHours - unAvailableUserHours}+` : ''}
-      </p>
+      {!user?.isOnMission && ((availableUserHours - unAvailableUserHours) <= 0 ? <Home /> : <Tent />)}
+      {
+        !user?.isOnMission && isUserAvailable &&
+        <p className="user-card__employment">
+          {availableUserHours - unAvailableUserHours}+
+        </p>
+      }
     </div>
   ); else {
     return (
-      <div className="user-card user-card--empty" draggable={isUserAvailable} data-available={(availableUserHours - unAvailableUserHours) > 0}>
-        {/* {user?.isCommander && <Commander style={{ position: 'absolute', top: '7px', right: '12px' }} />}
-        <div className="user-card__wrapper">
-          <h3 className="user-card__secondname">{user?.secondName}</h3>
-          <p className="user-card__firstname">{user?.firstName}</p>
-        </div>
-        {user?.isOnMission && (availableUserHours - unAvailableUserHours) <= 0 ? <Home /> : <Tent />}
-        <p className="user-card__employment">
-          {user?.isOnMission && isUserAvailable ? `${availableUserHours - unAvailableUserHours}+` : ''}
-        </p> */}
-      </div>
+      <div className="user-card user-card--empty" draggable={isUserAvailable} data-available={(availableUserHours - unAvailableUserHours) > 0}></div>
     )
   }
 }

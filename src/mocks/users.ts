@@ -25,7 +25,7 @@ export let users: User[] = [
     token: 'אלכס',
     isAdmin: false,
     isOnMission: false,
-    employment: createRandomBooleanArray(24, 0.23, 0.77)
+    employment: createRandomBooleanArray(24, 0.23, 0.9)
   },
   {
     firstName: 'עידן',
@@ -33,7 +33,7 @@ export let users: User[] = [
     id: 5873860,
     token: 'עידן',
     isOnMission: false,
-    employment: createRandomBooleanArray(24, 0.23, 0.77),
+    employment: createRandomBooleanArray(24, 0.23, 0.9),
     isCommander: true,
   },
   {
@@ -42,7 +42,7 @@ export let users: User[] = [
     id: 7676691,
     token: 'חיים',
     isOnMission: false,
-    employment: createRandomBooleanArray(24, 0.23, 0.77)
+    employment: createRandomBooleanArray(24, 0.23, 0.9)
   },
   {
     firstName: 'בר',
@@ -50,7 +50,7 @@ export let users: User[] = [
     id: 5419991,
     token: 'בר',
     isOnMission: false,
-    employment: createRandomBooleanArray(24, 0.23, 0.77),
+    employment: createRandomBooleanArray(24, 0.23, 0.9),
     isCommander: true,
   },
   {
@@ -59,7 +59,7 @@ export let users: User[] = [
     id: 1111111,
     token: 'יעקב',
     isOnMission: false,
-    employment: createRandomBooleanArray(24, 0.23, 0.77)
+    employment: createRandomBooleanArray(24, 0.23, 0.9)
   },
   {
     firstName: 'דניאל',
@@ -67,7 +67,7 @@ export let users: User[] = [
     id: 8376326,
     token: 'דניאל',
     isOnMission: false,
-    employment: createRandomBooleanArray(24, 0.23, 0.77),
+    employment: createRandomBooleanArray(24, 0.23, 0.9),
     isCommander: true,
   },
   {
@@ -76,7 +76,7 @@ export let users: User[] = [
     id: 7701368,
     token: 'שוקי',
     isOnMission: false,
-    employment: createRandomBooleanArray(24, 0.23, 0.77),
+    employment: createRandomBooleanArray(24, 0.23, 0.9),
     isAdmin: true,
   }
 ]
