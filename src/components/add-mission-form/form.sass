@@ -6,7 +6,7 @@
   gap: 20px
 
   &__container
-    position: absolute
+    position: fixed
     width: 100vw
     height: 100vh
     background-color: rgba(0,0,0,0.8)
@@ -86,6 +86,14 @@
       color: lighten($black, 80%)
       &:focus-visible
         color: $black
+      &::-webkit-datetime-icon
+        opacity: 0.5
+      &::-webkit-datetime-edit
+        color: transparent
+    &--date-has-value
+      &::-webkit-datetime-edit
+        color: initial
+
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button
@@ -168,6 +176,7 @@
   &__add-soldier
     position: absolute
     top: 50%
+    min-width: 300px
     transform: translate(-50%, -50%)
     transition: 0.5s
     padding: 20px

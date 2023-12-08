@@ -1,79 +1,75 @@
-import { RootState } from "../../store/RootState";
-import { Mission } from "../../types/mission";
+import { ReactComponent as MissionInfo } from "../../img/icons/mission-info.svg";
 import { useSelector } from "react-redux";
-import { UserCard } from "./user-card";
 import { useState } from "react";
-import './mission.sass'
+import { RootState } from "../../store/RootState";
+import { SECONDS_PER_DAY } from "../../const";
+import { Mission } from "../../types/mission";
+import { UserCard } from "./user-card";
+import './mission.sass';
 
 type ScheduledMissionProps = {
   mission: Mission;
 }
 
-export function ScheduledMission({mission}: ScheduledMissionProps): JSX.Element {
-  const missions = useSelector((state: RootState) => state.admin.missions)
+export function ScheduledMission({ mission }: ScheduledMissionProps): JSX.Element {
+  const missions = useSelector((state: RootState) => state.admin.missions);
 
-  const endTime = Math.round(mission.startingTime) + Math.round(mission.length);
+  const uniqueMissions = Array.from(new Set(missions.map(m => m.name))).map(name => missions.find(m => m.name === name));
   
-  const uniqueMissions = missions.filter((mission, name, array) => {
-    return array.findIndex((item) => item.name === mission.name) === name;
-  })
-
   const [showInfo, setShowInfo] = useState(false);
+  
+  const missionsCount = mission.oneTimeActivity === false ? Math.round(((mission.endDate.getTime() - (mission.startDate.getTime())) / SECONDS_PER_DAY) / (mission.duration * 60)) : 1;
 
-  return (mission &&
-    <div className="mission" style={{
-      top: `calc(${mission.startingTime / 24 * 100}% + 0.5px)`,
-      width: `calc(${100 / uniqueMissions.length}% - ${80 / uniqueMissions.length + 1}px)`,
-      right: `calc(${mission.order / uniqueMissions.length * 100}% + ${80.5 - 80/uniqueMissions.length * mission.order}px)`,
-      height: `calc(${mission.length * 42 + mission.length}px - 1px)`
+  const endTime = mission.startTime + mission.duration;
+  
+  const missionTop = `calc(${(mission.startTime) / 24 * 100}% + 0.5px)`;
+  // const missionWidth = `calc(${100 / (uniqueMissions.length + 1)}% - ${80 / (uniqueMissions.length + 1) + 1}px)`;
+  // const missionRight = `calc(${mission.order / (uniqueMissions.length + 1) * 100}% + ${80.5 - 80 / (uniqueMissions.length + 1) * mission.order}px)`;
+  const missionRight = `calc(${mission.order * 260 + 80.5}px)`;
+  const missionHeight = `calc(${mission.duration * 42 + mission.duration}px - 1px)`;
+  
+  return (
+    <tr className="mission" style={{
+      top: missionTop,
+      // width: missionWidth,
+      right: missionRight,
+      height: missionHeight
     }}>
-      <ul className="mission__participants">        
-        {
-          mission.participants.map((user) => {
-            user = {...user, isOnMission: true};
-
-            return (
-              <li key={`${mission.name} -> ${user.firstName} ${user.secondName}`}>
-                {
-                  <UserCard user={user}/>
-                }
-              </li>
-            )
-          })
-        }
-      </ul>
-      <div className="mission__info">
-        <span>
-        {
-            10 / Math.round(mission.startingTime) > 1
-            ?
-            '0' + Math.round(mission.startingTime)
-            :
-            (mission.startingTime)
-          }:00 - {
-            10 / (mission.startingTime + mission.length) > 1 && (mission.startingTime + mission.length) !== 9
-            ?
-            `0${endTime}`
-            :
-            endTime <= 24
-              ?
-              `${10 / endTime >= 1 ? endTime : '0' + endTime}`
-              :
-              `${(10 / endTime) % 24 > 1 ? endTime % 24 : '0' + endTime % 24}`}
-              :
-              {
-                (mission.length + mission.startingTime) - Math.round(mission.length + mission.startingTime) !== 0 ? '30' : '00'
-              }
-        </span>
-        <button className="mission__description-btn" type="button" onClick={() => setShowInfo(!showInfo)}>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 5H11V7H9V5ZM9 9H11V15H9V9ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" fill="#999999"/>
-          </svg>
-        </button>
-        <div className="mission__description" style={{bottom: showInfo ? '30px' : '200px', opacity: showInfo ? '1' : '0', userSelect: showInfo ? 'none' : 'all'}}>
-          {mission.description}
+      <td className="mission__container">
+        <ul className="mission__participants">        
+          {
+            mission.participants.map((user) => {
+              user = {...user, isOnMission: true};
+              
+              return (
+                <li key={`${mission.name} -> ${user.id}`}>
+                  {
+                    <UserCard user={user}/>
+                  }
+                </li>
+              )
+            })
+          }
+        </ul>
+        <div className="mission__info">
+          <span>
+            {
+              (mission.startTime) < 10 ? `0${mission.startTime}` : mission.startTime
+            }:00 - {
+              (endTime) < 10 ? `0${endTime}` : endTime
+            }:
+            {
+              (endTime) - Math.round(endTime) !== 0 ? '30' : '00'
+            }
+          </span>
+          <button className="mission__description-btn" type="button" onClick={() => setShowInfo(!showInfo)}>
+            <MissionInfo/>
+          </button>
+          <div className="mission__description" style={{bottom: showInfo ? '30px' : '200px', opacity: showInfo ? '1' : '0', userSelect: showInfo ? 'none' : 'all'}}>
+            {mission.description}
+          </div>
         </div>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 }

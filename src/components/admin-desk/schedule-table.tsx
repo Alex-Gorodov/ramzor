@@ -5,8 +5,8 @@ import { toHebrewJewishDate, toJewishDate } from "jewish-date";
 import { ScheduledMission } from "./scheduled-mission";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/RootState";
-import { useEffect, useState } from "react";
-import './schedule.sass'
+import { useEffect, useRef, useState } from "react";
+import './schedule.sass';
 
 export function ScheduleTable(): JSX.Element {
   const dispatch = useDispatch();
@@ -14,11 +14,27 @@ export function ScheduleTable(): JSX.Element {
   const newMissions = useSelector((state: RootState) => state.admin.missions)
   const currentTimeInSec = (newDate.getHours())*60*60 + newDate.getMinutes()*60 + newDate.getSeconds();
   const isFormOpened = useSelector((state: RootState) => state.admin.isFormOpened);
+  const positionRef = useRef<HTMLTableCellElement>(null);
+  const [position, setPosition] = useState(150);
 
+  useEffect(() => {
+    const element = positionRef.current;
+
+    const updatePosition = () => {
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        setPosition(window.innerWidth - rect.left);
+      }
+    }
+    updatePosition();
+    window.addEventListener('resize', updatePosition);
+    window.addEventListener('scroll', updatePosition);
+  }, []);
+  
   const uniqueMissions = newMissions.filter((mission, name, array) => {
     return array.findIndex((item) => item.name === mission.name) === name;
   })
-
+  
   const [dayTimePercentage, setDayTimePercentage] = useState(
     (100 - (43 / window.innerHeight) * 100) * (currentTimeInSec / SECONDS_PER_DAY)
   );
@@ -43,7 +59,10 @@ export function ScheduleTable(): JSX.Element {
 
   return (
     <>
-      <h1 className="schedule__title">שעון לחימה | גדוד ראם 9213</h1>
+      <h1 className="schedule__title">
+        <span></span>
+        שעון לחימה | גדוד ראם 9213
+      </h1>
       <div className="schedule-date__wrapper">
         <button className="schedule__day-btn schedule__day-btn--prev" onClick={() => dispatch(changeDateDown({date: newDate}))}>&#8593;</button>
         <div className="schedule-date">
@@ -55,64 +74,65 @@ export function ScheduleTable(): JSX.Element {
         <button className="schedule__day-btn schedule__day-btn--next" onClick={() => dispatch(changeDateUp({date: newDate}))}>&#8595;</button>
       </div>
       <AddMissionForm/>
-      <table className="schedule__table schedule-section">
-        {
-          newDate.getDay() === new Date().getDay()
-          ?
-          <p className="schedule-date__timer" style={{ top: `calc(${dayTimePercentage}% + ${0.5 * dayTimePercentage}px)`}}></p>
-          :
-          ''
-        }
-        <tbody>
-          <tr className="schedule__head">
-            <button
-              className="schedule__mission-btn schedule__mission-btn--add"
-              onClick={() =>
-                dispatch(toggleForm({isOpened: !isFormOpened}))
+        <table className="schedule__table schedule-section">
+          {
+            newDate.getDay() === new Date().getDay()
+            ?
+            <tfoot className="schedule-date__timer" style={{ top: `calc(${dayTimePercentage}% + ${0.53 * dayTimePercentage}px)`}}/>
+            :
+            ''
+          }
+          <tbody>
+            <tr className="schedule__head" style={{right: `${position}px`}}>
+              {
+                uniqueMissions.map((mission) => {
+                  return (
+                    <th className="schedule__column-name__container" key={`col-${mission.id}`}>
+                      <div className="schedule__column-name__wrapper">
+                        <span className="schedule__column-name">{mission.name}</span>
+                        <button
+                          className="schedule__mission-btn schedule__mission-btn--remove"
+                          onClick={() => dispatch(removeMission({mission}))}>
+                        </button>
+                      </div>
+                    </th>
+                  )
+                })
               }
-            >+</button>
+              <th className="schedule__column-name__container schedule__column-name__container--last">
+                <button
+                  className="schedule__mission-btn schedule__mission-btn--add"
+                  onClick={() => dispatch(toggleForm({ isOpened: !isFormOpened }))}
+                >
+                  +
+                </button>
+              </th>
+            </tr>
             {
-              uniqueMissions.map((mission) => {
-                return (
-                  <th className="schedule__column-name__container" key={mission.name}>
-                    <div className="schedule__column-name__wrapper">
-                      <p className="schedule__column-name">{mission.name}</p>
-                      <button
-                        className="schedule__mission-btn schedule__mission-btn--remove"
-                        onClick={() => dispatch(removeMission({mission}))}>
-                      </button>
-                    </div>
-                  </th>
-                )
+              newMissions.map((mission) => {
+                return ((mission.startDate instanceof Date && mission.startDate.getDay() === newDate.getDay()) &&
+                (
+                  <ScheduledMission key={mission.id} mission={mission}/>
+                ))
               })
             }
-          </tr>
-          {
-            newMissions.map((mission) => {
-              return ((mission.startingDate instanceof Date && mission.startingDate.getDay() === newDate.getDay()) &&
-               (
-                <ScheduledMission mission={mission}/>
-              ))
-            })
-          }
-          {HOURS.map((hour) => {
-            return (
-              <tr className="schedule-hours hours__wrapper" key={`hour-${hour}`} data-hour={`${hour}`}>
-                <td
-                  className="schedule-hours__row"
-                  key={`hour-${hour}`}
-                >
-                  <span>
-                    {10 / hour > 1 ? '0' + hour : hour}:00
-                  </span>
-                </td>
-                {
-                  uniqueMissions.map((mission) => {
-                    return (
-                      <>
+            {HOURS.map((hour) => {
+              return (
+                <tr className="schedule-hours hours__wrapper" key={`hour-${hour}`} data-hour={`${hour}`}>
+                  <td
+                    className="schedule-hours__row"
+                    ref={positionRef.current ? undefined : positionRef}
+                  >
+                    <span>
+                      {10 / hour > 1 ? '0' + hour : hour}:00
+                    </span>
+                  </td>
+                  {
+                    uniqueMissions.map((mission) => {
+                      return (
                         <td
                           className="schedule-hours__cell"
-                          data-mission-length={mission.length + ' שעות'}
+                          data-mission-length={mission.duration + ' שעות'}
                           key={`${mission.name}-${hour}`}
                           title={`${mission.name} ${
                             10 / hour > 1
@@ -128,15 +148,15 @@ export function ScheduleTable(): JSX.Element {
                             `${hour + 1}`
                           }:00`}
                         ></td>
-                      </>
-                    )
-                  })
-                }
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                      )
+                    })
+                  }
+                  <td className="schedule-hours__cell schedule-hours__cell--last"></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
     </>
   );
 }

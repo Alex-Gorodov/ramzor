@@ -6,9 +6,9 @@ export const changeDateUp = createAction<{date: Date}>('admin/changeDateUp');
 
 export const changeDateDown = createAction<{date: Date}>('admin/changeDateDown');
 
-export const removeMission = createAction<{mission: Mission}>('admin/removeMission');
-
 export const addMission = createAction<{mission: Mission}>('admin/addMission');
+
+export const removeMission = createAction<{mission: Mission}>('admin/removeMission');
 
 export const toggleForm = createAction<{isOpened: boolean}>('admin/toggleForm');
 

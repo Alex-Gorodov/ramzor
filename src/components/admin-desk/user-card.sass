@@ -1,5 +1,29 @@
 @import '../../style'
 
+@keyframes shaking 
+  0% 
+    transform: rotate(0)
+  10%
+    transform: rotate(0.4deg)
+  20%
+    transform: rotate(-0.4deg)
+  30%
+    transform: rotate(0.2deg)
+  40%
+    transform: rotate(-0.2deg)
+  50%
+    transform: rotate(0.4deg)
+  60%
+    transform: rotate(-0.4deg)
+  70%
+    transform: rotate(0.2deg)
+  80%
+    transform: rotate(-0.2deg)
+  90%
+    transform: rotate(0.4deg)
+  100%
+    transform: rotate(0)
+
 .user-card
   position: relative
   min-width: 140px
@@ -27,19 +51,27 @@
   &__container
     position: relative
     &--removing
-      &::after
+      animation-name: shaking
+      animation-iteration-count: infinite
+      animation-duration: 2s
+      & span
+        cursor: pointer
+        z-index: 10
+        &::after
         position: absolute
         display: flex
         justify-content: center
         align-items: center
-        top: -5px
-        right: -5px
+        top: -7px
+        right: -7px
         border-radius: 50%
-        width: 16px
-        height: 16px
-        background-color: red
-        color: $white
-        content: '-'
+        width: 14px
+        height: 14px
+        background-image: url("../../img/icons/removing-soldier-cross.svg")
+        background-position: center
+        background-repeat: no-repeat
+        background-size: initial
+        content: ''
 
   &__employment
     margin: 0
@@ -48,6 +80,7 @@
     display: flex
     flex-direction: column
     margin-left: auto
+    text-align: right
 
   &__secondname
     margin: 0

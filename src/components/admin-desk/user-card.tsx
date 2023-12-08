@@ -20,13 +20,13 @@ export function UserCard({ user }: UserProps): JSX.Element {
         <h3 className="user-card__secondname">{user?.secondName}</h3>
         <p className="user-card__firstname">{user?.firstName}</p>
       </div>
-      {!user?.isOnMission && ((availableUserHours - unAvailableUserHours) <= 0 ? <Home /> : <Tent />)}
       {
         !user?.isOnMission && isUserAvailable &&
         <p className="user-card__employment">
           {availableUserHours - unAvailableUserHours}+
         </p>
       }
+      {!user?.isOnMission && ((availableUserHours - unAvailableUserHours) <= 0 ? <Home /> : <Tent />)}
     </div>
   ); else {
     return (

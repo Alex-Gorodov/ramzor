@@ -6,11 +6,12 @@ td, th
   text-align: center
   user-select: none
 
-th:first-child
-  height: 60px
-  border: none
+th:last-child
+  height: 0px
+  border-top: none
+  background: $white
 
-th:not(:first-child)
+th
   min-width: 260px
   height: 60px
 
@@ -22,7 +23,10 @@ th:not(:first-child)
   align-items: center
   justify-items: center
   font-family: $admin-font
-  overflow: hidden
+  // overflow: hidden
+
+  &__table-container
+    overflow-x: auto
 
   &-section
     position: relative
@@ -43,17 +47,37 @@ th:not(:first-child)
     font-size: 25px
     background-color: $user-available-bg
     z-index: 10
-    &::before
-      display: block
-      width: 60px
-      height: 60px
-      border: 1px solid $admin-date-gray
+    & span
+      position: relative
+      // border: 2px solid $white
       border-radius: 50%
-      background-image: url("../../img/logo.png")
-      background-size: 48px 48px
-      background-repeat: no-repeat
-      background-position: center
-      content: ''
+      z-index: 2
+      &::before
+        display: block
+        width: 60px
+        height: 60px
+        border: 1px solid $admin-date-gray
+        border-radius: 50%
+        background-image: url("./../../logo.svg")
+        background-size: 48px 48px
+        background-repeat: no-repeat
+        background-position: center
+        background-color: $logo-gray
+        border: 1px solid $logo-border-black
+        content: ''
+      &::after
+        position: absolute
+        display: block
+        background-color: $white
+        border: 1px solid $admin-date-gray
+        border-radius: 50%
+        width: calc(100% + 4px)
+        height: calc(100% + 4px)
+        top: -2px
+        left: -2px
+        z-index: -1
+        content: ''
+        
 
   &__mission-btn
     position: absolute
@@ -64,7 +88,7 @@ th:not(:first-child)
     background-repeat: no-repeat
     cursor: pointer
     &--add
-      right: calc(100% + 12px)
+      right: 12px
       top: 30px
       background-image: url("../../img/icons/add-mission.svg")
       background-size: 14px 14px
@@ -84,8 +108,26 @@ th:not(:first-child)
   &__head
     position: fixed
     top: 90px
-    right: 150px
+    // right: 150px
     z-index: 10
+
+  &__fixed-header
+    position: fixed
+    top: 90px
+    display: flex
+    z-index: 10
+    &-cell 
+      min-width: 260px
+      height: 60px
+      background: linear-gradient(to bottom, #ffffff 0 10px, #d9d9d9 10px 50px, #ffffff 50px 60px)
+      padding: 0
+      border-bottom-color: $gray
+      border-inline: 1px solid $light-gray
+      display: flex
+      justify-content: center
+      align-items: center
+    
+
 
   &__column-name
     margin: 0
@@ -97,6 +139,9 @@ th:not(:first-child)
       padding: 0
       border-bottom-color: $gray
       border-inline: 1px solid $light-gray
+      &--last
+        position: relative
+        width: 100%
     &__wrapper
       position: relative
       display: flex
@@ -131,12 +176,12 @@ th:not(:first-child)
 
   &-date__wrapper
     display: flex
-    height: calc(100% - 60px)
+    height: calc(100% - 150px)
     width: 100%
     flex-direction: column
     padding: 0
     margin: 0
-    margin-top: 240px
+    margin-top: 150px
     border: 1px solid $black
     justify-content: center
     align-items: center
@@ -178,6 +223,9 @@ th:not(:first-child)
       min-width: 260px
       max-width: 280px
       height: 43px
+      &--last
+        max-width: none
+        width: 100vw
 
       &:hover
         background-color: $user-unavailable-bg
@@ -225,9 +273,10 @@ th:not(:first-child)
     &__description
       position: relative
       display: flex
-      margin-bottom: 22px
       justify-content: space-between
       align-items: center
+      margin-bottom: -20px
+      background-color: $admin-date-gray
       &::after
         position: absolute
         bottom: 0
@@ -237,10 +286,10 @@ th:not(:first-child)
         height: 2px
         background-color: $white
         content: ''
-
     &__title
       font-size: 18px
       font-weight: 400
+      user-select: none
     &__btn-wrapper
       display: flex
       gap: 16px
@@ -261,7 +310,7 @@ th:not(:first-child)
       &::before
         display: block
         width: 22px
-        height: 16px
+        height: 17px
         background-size: initial
         background-repeat: no-repeat
         background-position: center
@@ -275,21 +324,23 @@ th:not(:first-child)
         background-color: $color-card-absent
         &::before
           background-image: url("../../img/icons/remove-soldier.svg")
-
     &__block
       display: flex
       min-width: 360px
+      padding: 2px 0
       justify-content: center
       background-color: $white
       border-radius: 6px
-      scrollbar-width: thin
+      box-shadow: 0 0 2px 0 inset mix($black, $white, 75%)
+      transition: 0.5s
 
   &__users
     @include reset-list
     display: flex
     flex-direction: column
     width: 300px
-    min-height: 580px
+    min-height: 400px
+    max-height: 580px
     overflow: scroll
     padding: 20px
     grid-row: 1 / 2

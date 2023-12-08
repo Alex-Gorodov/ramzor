@@ -26,6 +26,16 @@ export const adminTableReducer = createReducer(initialState, (builder) => {
   .addCase(removeMission, (state, action) => {
     const {mission} = action.payload;
     state.missions = state.missions.filter((oldMission) => mission.id !== oldMission.id);
+
+    const deletedOrder = mission.order;
+    state.missions = state.missions
+      .filter((oldMission) => mission.id !== oldMission.id)
+      .map((remainingMission) => {
+        if (remainingMission.order > deletedOrder) {
+          return { ...remainingMission, order: remainingMission.order - 1 };
+        }
+        return remainingMission;
+      });
   })
   .addCase(addMission, (state, action) => {
     const {mission} = action.payload;
