@@ -92,7 +92,7 @@ export function AddMissionForm(): JSX.Element {
     setShowUserCards(!showUserCards);
     setFormData((prevData) => ({
       ...prevData,
-      participants: handleCompleteSoldiers.length,
+      participants: handleCompleteSoldiers.length - 1,
     }));
   };
 
