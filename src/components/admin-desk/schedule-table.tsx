@@ -93,6 +93,7 @@ export function ScheduleTable(): JSX.Element {
                         <button
                           className="schedule__mission-btn schedule__mission-btn--remove"
                           onClick={() => dispatch(removeMission({mission}))}>
+                            <span className="visually-hidden">להסיר {mission.name}</span>
                         </button>
                       </div>
                     </th>

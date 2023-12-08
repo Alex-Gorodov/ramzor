@@ -1,7 +1,7 @@
 import { ReactComponent as MissionInfo } from "../../img/icons/mission-info.svg";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { useState } from "react";
-import { RootState } from "../../store/RootState";
+// import { RootState } from "../../store/RootState";
 import { SECONDS_PER_DAY } from "../../const";
 import { Mission } from "../../types/mission";
 import { UserCard } from "./user-card";
@@ -12,19 +12,17 @@ type ScheduledMissionProps = {
 }
 
 export function ScheduledMission({ mission }: ScheduledMissionProps): JSX.Element {
-  const missions = useSelector((state: RootState) => state.admin.missions);
+  // const missions = useSelector((state: RootState) => state.admin.missions);
 
-  const uniqueMissions = Array.from(new Set(missions.map(m => m.name))).map(name => missions.find(m => m.name === name));
+  // const uniqueMissions = Array.from(new Set(missions.map(m => m.name))).map(name => missions.find(m => m.name === name));
   
   const [showInfo, setShowInfo] = useState(false);
   
-  const missionsCount = mission.oneTimeActivity === false ? Math.round(((mission.endDate.getTime() - (mission.startDate.getTime())) / SECONDS_PER_DAY) / (mission.duration * 60)) : 1;
+  // const missionsCount = mission.oneTimeActivity === false ? Math.round(((mission.endDate.getTime() - (mission.startDate.getTime())) / SECONDS_PER_DAY) / (mission.duration * 60)) : 1;
 
   const endTime = mission.startTime + mission.duration;
   
   const missionTop = `calc(${(mission.startTime) / 24 * 100}% + 0.5px)`;
-  // const missionWidth = `calc(${100 / (uniqueMissions.length + 1)}% - ${80 / (uniqueMissions.length + 1) + 1}px)`;
-  // const missionRight = `calc(${mission.order / (uniqueMissions.length + 1) * 100}% + ${80.5 - 80 / (uniqueMissions.length + 1) * mission.order}px)`;
   const missionRight = `calc(${mission.order * 260 + 80.5}px)`;
   const missionHeight = `calc(${mission.duration * 42 + mission.duration}px - 1px)`;
   
@@ -63,6 +61,7 @@ export function ScheduledMission({ mission }: ScheduledMissionProps): JSX.Elemen
             }
           </span>
           <button className="mission__description-btn" type="button" onClick={() => setShowInfo(!showInfo)}>
+            <span className="visually-hidden">מידע על המשימה</span>
             <MissionInfo/>
           </button>
           <div className="mission__description" style={{bottom: showInfo ? '30px' : '200px', opacity: showInfo ? '1' : '0', userSelect: showInfo ? 'none' : 'all'}}>

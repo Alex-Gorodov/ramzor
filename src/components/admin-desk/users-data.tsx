@@ -247,6 +247,7 @@ export function UsersData(): JSX.Element {
               : setListPosition(UserListPosition[0])
           }}
           data-opened={listPosition === UserListPosition[0]}>
+            <span className="visually-hidden">פתיחת רמישת החיילים</span>
           <UsersListToggler/>
         </button>
       </div>
