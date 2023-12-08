@@ -12,6 +12,8 @@ export const removeMission = createAction<{mission: Mission}>('admin/removeMissi
 
 export const toggleForm = createAction<{isOpened: boolean}>('admin/toggleForm');
 
+export const toggleUsersList = createAction<{isOpened: boolean}>('admin/toggleUsersList');
+
 export const addUser = createAction<{user: User}>('admin/addUser');
 
 export const removeUser = createAction<{userToRemove: User}>('admin/removeUser');

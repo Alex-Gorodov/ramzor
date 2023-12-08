@@ -22,6 +22,7 @@ export type AuthState = {
 
 export type AdminTableState = {
   isFormOpened: boolean;
+  isSoldiersListOpened: boolean;
   missions: Mission[];
   users: User[];
   date: Date;

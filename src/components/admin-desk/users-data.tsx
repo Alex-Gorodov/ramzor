@@ -1,6 +1,6 @@
 import {ReactComponent as UsersListToggler} from "../../img/icons/users-list-toggler.svg"
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
-import { addUser, removeUser } from "../../store/admin/admin-actions";
+import { addUser, removeUser, toggleUsersList } from "../../store/admin/admin-actions";
 import { createRandomBooleanArray } from "../../mocks/users";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/RootState";
@@ -30,6 +30,7 @@ export function UsersData(): JSX.Element {
     employment: []
   });
 
+  const isListOpened = useSelector((state: RootState) => state.admin.isSoldiersListOpened);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [search, setSearch] = useState<string>('');
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
@@ -245,6 +246,7 @@ export function UsersData(): JSX.Element {
             listPosition === UserListPosition[0]
               ? setListPosition(UserListPosition[1])
               : setListPosition(UserListPosition[0])
+            dispatch(toggleUsersList({isOpened: !isListOpened}))
           }}
           data-opened={listPosition === UserListPosition[0]}>
             <span className="visually-hidden">פתיחת רמישת החיילים</span>

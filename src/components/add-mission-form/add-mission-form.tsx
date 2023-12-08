@@ -10,6 +10,7 @@ import './form.sass';
 export function AddMissionForm(): JSX.Element {
   const dispatch = useDispatch();
   const isFormOpened = useSelector((state: RootState) => state.admin.isFormOpened);
+  const isSoldiersListOpened = useSelector((state: RootState) => state.admin.isSoldiersListOpened);
   const missions = useSelector((state: RootState) => state.admin.missions);
   const users = useSelector((state: RootState) => state.admin.users);
   const formRef = useRef<HTMLFormElement>(null);
@@ -115,7 +116,9 @@ export function AddMissionForm(): JSX.Element {
     <div className="form__container" style={{
       top: `${isFormOpened ? '0%' : '-150%'}`
     }}>
-      <div className="form__wrapper">
+      <div className="form__wrapper" style={{
+        left: `${isSoldiersListOpened ? '75%' : '50%'}`
+      }}>
         <div className="form__inner-wrapper">
           <h2 className="form__title">הוספת משימה חדשה</h2>
           <button className='form__close-btn' onClick={() => {dispatch(toggleForm({isOpened: !isFormOpened}))}} title='לסגור(esc)'>

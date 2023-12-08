@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { AdminTableState } from "../../types/state";
-import { addMission, addUser, changeDateDown, changeDateUp, removeMission, removeUser, toggleForm } from "./admin-actions";
+import { addMission, addUser, changeDateDown, changeDateUp, removeMission, removeUser, toggleForm, toggleUsersList } from "./admin-actions";
 import { missions } from "../../mocks/missions";
 import { users } from "../../mocks/users";
 
@@ -8,6 +8,7 @@ const initialState: AdminTableState = {
   date: new Date(),
   missions: missions,
   isFormOpened: false,
+  isSoldiersListOpened: false,
   users: users,
 }
 
@@ -44,6 +45,10 @@ export const adminTableReducer = createReducer(initialState, (builder) => {
   .addCase(toggleForm, (state, action) => {
     const {isOpened} = action.payload;
     state.isFormOpened = isOpened;
+  })
+  .addCase(toggleUsersList, (state, action) => {
+    const {isOpened} = action.payload;
+    state.isSoldiersListOpened = isOpened;
   })
   .addCase(addUser, (state, action) => {
     const {user} = action.payload;
