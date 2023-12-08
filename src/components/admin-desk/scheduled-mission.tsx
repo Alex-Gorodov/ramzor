@@ -2,7 +2,7 @@ import { ReactComponent as MissionInfo } from "../../img/icons/mission-info.svg"
 // import { useSelector } from "react-redux";
 import { useState } from "react";
 // import { RootState } from "../../store/RootState";
-import { SECONDS_PER_DAY } from "../../const";
+// import { SECONDS_PER_DAY } from "../../const";
 import { Mission } from "../../types/mission";
 import { UserCard } from "./user-card";
 import './mission.sass';
