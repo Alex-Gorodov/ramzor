@@ -1,11 +1,12 @@
 {
   "files": {
-    "main.css": "/ramzor/static/css/main.35ef4629.css",
-    "main.js": "/ramzor/static/js/main.df38a846.js",
-    "static/media/logo.png": "/ramzor/static/media/logo.9775e0993627ded7c3e3.png",
+    "main.css": "/ramzor/static/css/main.db1b81c0.css",
+    "main.js": "/ramzor/static/js/main.47fb0b86.js",
+    "static/media/logo.svg": "/ramzor/static/media/logo.844e8cd224472b0907c4.svg",
     "static/media/autocomplete.svg": "/ramzor/static/media/autocomplete.22f230550cb447d475f9.svg",
     "index.html": "/ramzor/index.html",
     "static/media/commander-icon.svg": "/ramzor/static/media/commander-icon.9e41f8e20f00cb43e7455c4ccc22d501.svg",
+    "static/media/search.svg": "/ramzor/static/media/search.69acc8bd24a723bfbf69.svg",
     "static/media/tent-icon.svg": "/ramzor/static/media/tent-icon.ed18c83daea0e67b0c1e26189f184cd7.svg",
     "static/media/attention.svg": "/ramzor/static/media/attention.d28f7abae84603c00fae.svg",
     "static/media/home-icon.svg": "/ramzor/static/media/home-icon.681f519ab722f4c43843b3d65775e2d2.svg",
@@ -15,22 +16,24 @@
     "static/media/unavailable.svg": "/ramzor/static/media/unavailable.c23cd248debc76632a8a526f7a9e7c86.svg",
     "static/media/btn-partly.svg": "/ramzor/static/media/btn-partly.dc03cd4bf8b4a28a8730.svg",
     "static/media/available.svg": "/ramzor/static/media/available.f1e58d1a9b07cc22c39b1f114191300d.svg",
+    "static/media/removing-soldier-cross.svg": "/ramzor/static/media/removing-soldier-cross.6f236f9a4d97d060e8e0.svg",
+    "static/media/add-soldier.svg": "/ramzor/static/media/add-soldier.58e463615fc1a6bf1c73.svg",
     "static/media/timer-icon.svg": "/ramzor/static/media/timer-icon.4f11979d6773154d6cbb.svg",
     "static/media/info.svg": "/ramzor/static/media/info.6ec0ffcff2fc097df3ca.svg",
     "static/media/clock.svg": "/ramzor/static/media/clock.e4681dd94d04742b4212421a574984e4.svg",
+    "static/media/remove-soldier.svg": "/ramzor/static/media/remove-soldier.d7c8ec3accdca7a05c18.svg",
+    "static/media/mission-info.svg": "/ramzor/static/media/mission-info.eb7859385210d9f3b165fb203268f7f8.svg",
     "static/media/save-icon.svg": "/ramzor/static/media/save-icon.1cac7b32738e3928d87a.svg",
-    "static/media/add-soldier.svg": "/ramzor/static/media/add-soldier.b2793afdf9af8f9d679b.svg",
-    "static/media/remove-soldier.svg": "/ramzor/static/media/remove-soldier.5b4836203a96cda204a9.svg",
     "static/media/close-cross.svg": "/ramzor/static/media/close-cross.e6d046a0b8409ea40ae9.svg",
     "static/media/users-list-toggler.svg": "/ramzor/static/media/users-list-toggler.70d24ffcb122c22898c9b1c397dd969c.svg",
     "static/media/user-list-triangle.svg": "/ramzor/static/media/user-list-triangle.3b68f884b2081b7bdc7e.svg",
     "static/media/triangle.svg": "/ramzor/static/media/triangle.2468a6bfae327c639a9b.svg",
     "static/media/add-mission.svg": "/ramzor/static/media/add-mission.e09c5e05672f5f110bca.svg",
-    "main.35ef4629.css.map": "/ramzor/static/css/main.35ef4629.css.map",
-    "main.df38a846.js.map": "/ramzor/static/js/main.df38a846.js.map"
+    "main.db1b81c0.css.map": "/ramzor/static/css/main.db1b81c0.css.map",
+    "main.47fb0b86.js.map": "/ramzor/static/js/main.47fb0b86.js.map"
   },
   "entrypoints": [
-    "static/css/main.35ef4629.css",
-    "static/js/main.df38a846.js"
+    "static/css/main.db1b81c0.css",
+    "static/js/main.47fb0b86.js"
   ]
 }
