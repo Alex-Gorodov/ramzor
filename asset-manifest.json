@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ramzor/static/css/main.954ed817.css",
-    "main.js": "/ramzor/static/js/main.c9cf8bfc.js",
+    "main.js": "/ramzor/static/js/main.db1d5c5f.js",
     "static/media/logo.svg": "/ramzor/static/media/logo.844e8cd224472b0907c4.svg",
     "static/media/autocomplete.svg": "/ramzor/static/media/autocomplete.22f230550cb447d475f9.svg",
     "index.html": "/ramzor/index.html",
@@ -30,10 +30,10 @@
     "static/media/triangle.svg": "/ramzor/static/media/triangle.2468a6bfae327c639a9b.svg",
     "static/media/add-mission.svg": "/ramzor/static/media/add-mission.e09c5e05672f5f110bca.svg",
     "main.954ed817.css.map": "/ramzor/static/css/main.954ed817.css.map",
-    "main.c9cf8bfc.js.map": "/ramzor/static/js/main.c9cf8bfc.js.map"
+    "main.db1d5c5f.js.map": "/ramzor/static/js/main.db1d5c5f.js.map"
   },
   "entrypoints": [
     "static/css/main.954ed817.css",
-    "static/js/main.c9cf8bfc.js"
+    "static/js/main.db1d5c5f.js"
   ]
 }
