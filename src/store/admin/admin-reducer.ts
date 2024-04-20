@@ -1,12 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { AdminTableState } from "../../types/state";
 import { addMission, addUser, changeDateDown, changeDateUp, removeMission, removeUser, toggleForm, toggleUsersList } from "./admin-actions";
-import { missions } from "../../mocks/missions";
+import { newMissions } from "../../mocks/missions";
 import { users } from "../../mocks/users";
 
 const initialState: AdminTableState = {
   date: new Date(),
-  missions: missions,
+  missions: newMissions,
   isFormOpened: false,
   isSoldiersListOpened: false,
   users: users,

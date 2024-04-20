@@ -6,24 +6,21 @@ import './mission.sass';
 
 type ScheduledMissionProps = {
   mission: Mission;
-  isDuplicatedMission?: boolean;
 }
 
-export function ScheduledMission({ mission, isDuplicatedMission }: ScheduledMissionProps): JSX.Element {
+export function DuplicatedMission({ mission }: ScheduledMissionProps): JSX.Element {
   const [showInfo, setShowInfo] = useState(false);
   const endTime = mission.startTime + mission.duration;
 
   const cutDuration = endTime % 24;
-  const missionTop = `calc(${(mission.startTime) / 24 * 100}% + 0.5px)`;
   const missionRight = `calc(${mission.order * 260 + 80.5}px)`;
-  const missionHeight = `calc(${mission.duration * 42 + mission.duration}px - 1px)`;
 
   return (
     <>
       <tr className="mission" style={{
-        top: missionTop,
+        top: 0,
         right: missionRight,
-        height: endTime <= 24 ? missionHeight : `calc(${(mission.duration - cutDuration) * 42}px + ${mission.duration - cutDuration - 1}px)`,
+        height: `calc(${cutDuration * 42}px + ${cutDuration - 1}px)`,
         overflow: mission.duration >= 4 && mission.participants.length <= 4 && endTime <= 24 ? 'hidden' : 'auto'
       }}>
         <td className="mission__container">
@@ -43,9 +40,7 @@ export function ScheduledMission({ mission, isDuplicatedMission }: ScheduledMiss
           </ul>
           <div className="mission__info">
             <span>
-              {
-                (mission.startTime) < 10 ? `0${mission.startTime}` : mission.startTime
-              }:00 - {
+              {mission.startTime}:00 - {
                 (endTime < 10 ? `0${endTime}` : endTime > 24 && endTime % 24 < 10 ? `0${endTime % 24}` : endTime)
               }
               :

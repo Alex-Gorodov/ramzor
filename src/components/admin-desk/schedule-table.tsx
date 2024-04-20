@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/RootState";
 import { useEffect, useRef, useState } from "react";
 import './schedule.sass';
+import { DuplicatedMission } from "./duplicated-mission";
 
 export function ScheduleTable(): JSX.Element {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ export function ScheduleTable(): JSX.Element {
   const uniqueMissions = newMissions.filter((mission, name, array) => {
     return array.findIndex((item) => item.name === mission.name) === name;
   })
-  
+
   const [dayTimePercentage, setDayTimePercentage] = useState(
     (100 - (43 / window.innerHeight) * 100) * (currentTimeInSec / SECONDS_PER_DAY)
   );
@@ -76,7 +77,9 @@ export function ScheduleTable(): JSX.Element {
       <AddMissionForm/>
         <table className="schedule__table schedule-section">
           {
-            newDate.getDay() === new Date().getDay()
+            newDate.getDate() === new Date().getDate() &&
+            newDate.getMonth() === new Date().getMonth() &&
+            newDate.getFullYear() === new Date().getFullYear()
             ?
             <tfoot className="schedule-date__timer" style={{ top: `calc(${dayTimePercentage}% + ${0.53 * dayTimePercentage}px)`}}/>
             :
@@ -109,14 +112,35 @@ export function ScheduleTable(): JSX.Element {
                 </button>
               </th>
             </tr>
+
             {
-              newMissions.map((mission) => {
-                return ((mission.startDate instanceof Date && mission.startDate.getDay() === newDate.getDay()) &&
-                (
-                  <ScheduledMission key={mission.id} mission={mission}/>
-                ))
-              })
+              newMissions.map((mission) => (
+                (mission.startDate instanceof Date &&
+                  mission.startDate.getDate() === newDate.getDate() &&
+                  mission.startDate.getMonth() === newDate.getMonth() &&
+                  mission.startDate.getFullYear() === newDate.getFullYear() && (
+                    <ScheduledMission key={mission.id} mission={mission} />
+                  )
+                )
+              ))
             }
+
+            {
+              newMissions.filter((m) => m.startTime + m.duration > 24).map((mission) => (
+                mission.startTime + mission.duration > 24 &&
+                mission.startDate.getDate() >= newMissions[0].startDate.getDate() &&
+                mission.startDate.getDate() <= newMissions[0].endDate.getDate() && (
+                  <DuplicatedMission
+                    key={`${mission.id}-duplicate`}
+                    mission={{
+                      ...mission,
+                      startDate: new Date(mission.startDate.getTime() + 24 * 60 * 60 * 1000),
+                    }}
+                  />
+                )
+              ))
+            }
+
             {HOURS.map((hour) => {
               return (
                 <tr className="schedule-hours hours__wrapper" key={`hour-${hour}`} data-hour={`${hour}`}>
