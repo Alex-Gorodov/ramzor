@@ -36,7 +36,7 @@ export function Header(): JSX.Element {
         <div className="header__title-wrapper">
           <h1 className="header__title">שעון לחימה</h1>
         </div>
-        <p className="header__subtitle">שלום, {getToken()}</p>
+        <p className="header__subtitle">שלום, {getToken().replace(/[0-9-]/g, '')}</p>
       </div>
       <div className={headerContentClassName}>
         <div className="header__description-wrapper">
